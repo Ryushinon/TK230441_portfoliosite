@@ -1,0 +1,169 @@
+.philosophy {
+    position: relative;
+    background: var(--bg-secondary);
+    overflow: hidden;
+}
+
+.philosophy__content {
+    max-width: 900px;
+    margin: 0 auto;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.philosophy--visible .philosophy__content {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Quote */
+.philosophy__quote {
+    text-align: center;
+    margin-bottom: var(--gap-xl);
+    position: relative;
+}
+
+.philosophy__quote-mark {
+    font-family: var(--font-display);
+    font-size: 4rem;
+    color: var(--accent-cyan);
+    opacity: 0.3;
+    position: absolute;
+    line-height: 1;
+}
+
+.philosophy__quote-mark:first-child {
+    top: -20px;
+    left: -10px;
+}
+
+.philosophy__quote-mark--end {
+    bottom: -40px;
+    right: -10px;
+}
+
+.philosophy__main-message {
+    font-family: var(--font-display);
+    font-size: clamp(1.2rem, 3vw, 1.8rem);
+    font-weight: 700;
+    line-height: 1.6;
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    padding: 0 40px;
+}
+
+.philosophy__description {
+    text-align: center;
+    color: var(--text-secondary);
+    line-height: 2;
+    margin-bottom: var(--gap-xl);
+    white-space: pre-line;
+}
+
+/* Key Points */
+.philosophy__points {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--gap-lg);
+}
+
+.philosophy__point {
+    background: var(--bg-tertiary);
+    padding: var(--gap-lg);
+    border-radius: 8px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.3s ease;
+}
+
+.philosophy--visible .philosophy__point {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.philosophy__point::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--accent-gradient);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.philosophy__point:hover::before {
+    transform: scaleX(1);
+}
+
+.philosophy__point:hover {
+    box-shadow: 0 10px 40px rgba(0, 240, 255, 0.1);
+}
+
+.philosophy__point-number {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--accent-cyan);
+    opacity: 0.3;
+    margin-bottom: var(--gap-sm);
+}
+
+.philosophy__point-title {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: var(--gap-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.philosophy__point-description {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* Background Lines */
+.philosophy__bg-line {
+    position: absolute;
+    width: 1px;
+    height: 200px;
+    background: linear-gradient(to bottom,
+            transparent,
+            var(--accent-cyan),
+            transparent);
+    opacity: 0.2;
+}
+
+.philosophy__bg-line--1 {
+    left: 10%;
+    top: 20%;
+}
+
+.philosophy__bg-line--2 {
+    right: 10%;
+    bottom: 20%;
+}
+
+@media (max-width: 768px) {
+    .philosophy__points {
+        grid-template-columns: 1fr;
+    }
+
+    .philosophy__quote-mark {
+        font-size: 2.5rem;
+    }
+
+    .philosophy__main-message {
+        padding: 0 20px;
+    }
+}

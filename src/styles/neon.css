@@ -1,0 +1,212 @@
+/* ========================================
+   Neon Effect Styles
+   ======================================== */
+
+/* Neon Text */
+.neon-text {
+    color: var(--accent-cyan);
+    text-shadow:
+        0 0 5px var(--accent-cyan),
+        0 0 10px var(--accent-cyan),
+        0 0 20px var(--accent-cyan),
+        0 0 40px var(--accent-cyan);
+}
+
+.neon-text-purple {
+    color: var(--accent-purple);
+    text-shadow:
+        0 0 5px var(--accent-purple),
+        0 0 10px var(--accent-purple),
+        0 0 20px var(--accent-purple),
+        0 0 40px var(--accent-purple);
+}
+
+/* Neon Glow Box */
+.neon-box {
+    border: 2px solid var(--accent-cyan);
+    box-shadow:
+        0 0 5px var(--accent-cyan),
+        0 0 10px var(--accent-cyan),
+        inset 0 0 5px rgba(0, 240, 255, 0.1);
+    transition: var(--transition-fast);
+}
+
+.neon-box:hover {
+    box-shadow:
+        0 0 10px var(--accent-cyan),
+        0 0 20px var(--accent-cyan),
+        0 0 40px var(--accent-cyan),
+        inset 0 0 10px rgba(0, 240, 255, 0.2);
+}
+
+.neon-box-purple {
+    border: 2px solid var(--accent-purple);
+    box-shadow:
+        0 0 5px var(--accent-purple),
+        0 0 10px var(--accent-purple),
+        inset 0 0 5px rgba(191, 0, 255, 0.1);
+    transition: var(--transition-fast);
+}
+
+.neon-box-purple:hover {
+    box-shadow:
+        0 0 10px var(--accent-purple),
+        0 0 20px var(--accent-purple),
+        0 0 40px var(--accent-purple),
+        inset 0 0 10px rgba(191, 0, 255, 0.2);
+}
+
+/* Neon Line */
+.neon-line {
+    height: 2px;
+    background: var(--accent-gradient);
+    box-shadow:
+        0 0 5px var(--accent-cyan),
+        0 0 10px var(--accent-purple);
+    border-radius: 2px;
+}
+
+/* Neon Flicker Animation */
+.neon-flicker {
+    animation: flicker 4s infinite;
+}
+
+@keyframes flicker {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    41% {
+        opacity: 1;
+    }
+
+    42% {
+        opacity: 0.8;
+    }
+
+    43% {
+        opacity: 1;
+    }
+
+    45% {
+        opacity: 0.3;
+    }
+
+    46% {
+        opacity: 1;
+    }
+
+    49% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.7;
+    }
+
+    51% {
+        opacity: 1;
+    }
+
+    70% {
+        opacity: 1;
+    }
+
+    72% {
+        opacity: 0.9;
+    }
+
+    73% {
+        opacity: 1;
+    }
+}
+
+/* Neon Breathing Animation */
+.neon-breathe {
+    animation: breathe 3s ease-in-out infinite;
+}
+
+@keyframes breathe {
+
+    0%,
+    100% {
+        box-shadow:
+            0 0 5px var(--accent-cyan),
+            0 0 10px var(--accent-cyan);
+    }
+
+    50% {
+        box-shadow:
+            0 0 15px var(--accent-cyan),
+            0 0 30px var(--accent-cyan),
+            0 0 45px var(--accent-cyan);
+    }
+}
+
+/* Gradient Border Animation */
+.gradient-border {
+    position: relative;
+    background: var(--bg-secondary);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.gradient-border::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: var(--accent-gradient);
+    z-index: -1;
+    border-radius: 10px;
+}
+
+.gradient-border-animated::before {
+    background: linear-gradient(45deg,
+            var(--accent-cyan),
+            var(--accent-purple),
+            var(--accent-cyan),
+            var(--accent-purple));
+    background-size: 400% 400%;
+    animation: gradient-shift 4s ease infinite;
+}
+
+@keyframes gradient-shift {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Neon Underline */
+.neon-underline {
+    position: relative;
+    display: inline-block;
+}
+
+.neon-underline::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--accent-gradient);
+    box-shadow: 0 0 10px var(--accent-cyan);
+    transition: width var(--transition-medium);
+}
+
+.neon-underline:hover::after {
+    width: 100%;
+}

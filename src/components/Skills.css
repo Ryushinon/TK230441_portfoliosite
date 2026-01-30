@@ -1,0 +1,124 @@
+.skills {
+    background: var(--bg-secondary);
+}
+
+.skills__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--gap-lg);
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.skills__item {
+    display: flex;
+    align-items: center;
+    gap: var(--gap-lg);
+    padding: var(--gap-lg);
+    background: var(--bg-tertiary);
+    border-radius: 8px;
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.3s ease;
+}
+
+.skills--visible .skills__item {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.skills__item:hover {
+    box-shadow: 0 10px 40px rgba(0, 240, 255, 0.1);
+}
+
+.skills__icon {
+    flex-shrink: 0;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-secondary);
+    border: 1px solid var(--text-muted);
+    border-radius: 8px;
+    color: var(--accent-cyan);
+    transition: var(--transition-fast);
+}
+
+.skills__icon svg {
+    width: 28px;
+    height: 28px;
+}
+
+.skills__item:hover .skills__icon {
+    border-color: var(--accent-cyan);
+    box-shadow: var(--glow-cyan);
+}
+
+.skills__info {
+    flex: 1;
+}
+
+.skills__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--gap-sm);
+}
+
+.skills__name {
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-primary);
+}
+
+.skills__level {
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    color: var(--accent-cyan);
+}
+
+.skills__bar {
+    width: 100%;
+    height: 6px;
+    background: var(--bg-secondary);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.skills__bar-fill {
+    height: 100%;
+    width: 0;
+    background: var(--accent-gradient);
+    border-radius: 3px;
+    box-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+    transition: width 1.5s ease;
+}
+
+.skills--visible .skills__bar-fill {
+    width: var(--skill-level);
+}
+
+@media (max-width: 768px) {
+    .skills__grid {
+        grid-template-columns: 1fr;
+    }
+
+    .skills__item {
+        gap: var(--gap-md);
+        padding: var(--gap-md);
+    }
+
+    .skills__icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    .skills__icon svg {
+        width: 22px;
+        height: 22px;
+    }
+}

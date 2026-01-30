@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile | Ryushin Mano</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Orbitron:wght@400;700;900&display=swap"
+        rel="stylesheet">
+    <style>
+        /* Base Styles from preview.html */
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #121212;
+            --bg-tertiary: #1a1a1a;
+            --accent-cyan: #00f0ff;
+            --accent-purple: #bf00ff;
+            --accent-gradient: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple));
+            --text-primary: #ffffff;
+            --text-secondary: #cccccc;
+            --text-muted: #666666;
+            --glow-cyan: 0 0 10px rgba(0, 240, 255, 0.5);
+            --font-display: 'Orbitron', sans-serif;
+            --font-body: 'Noto Sans JP', sans-serif;
+            --gap-sm: 10px;
+            --gap-md: 20px;
+            --gap-lg: 40px;
+            --gap-xl: 80px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding-bottom: 80px;
+            padding-top: 100px;
+            /* Navbar分の余白を追加 */
+        }
+
+        /* ========================================
+           Navbar Styles (Ported from preview.html)
+           ======================================== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 20px 0;
+            transition: 0.3s ease;
+            background: rgba(10, 10, 10, 0.95);
+            /* 常時背景ありにして視認性を確保 */
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .navbar__container {
+            max-width: 1000px;
+            /* コンテナサイズに合わせる */
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar__logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 900;
+        }
+
+        .navbar__logo-text {
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .navbar__logo-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent-cyan);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--accent-cyan);
+        }
+
+        .navbar__links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .navbar__link {
+            font-family: var(--font-display);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            text-decoration: none;
+            color: var(--text-secondary);
+            transition: 0.3s ease;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .navbar__link:hover {
+            color: var(--accent-cyan);
+        }
+
+        .navbar__link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-gradient);
+            transition: width 0.3s ease;
+        }
+
+        .navbar__link:hover::after {
+            width: 100%;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Profile Header */
+        .profile-header {
+            padding: 80px 0 40px;
+            text-align: center;
+        }
+
+        .profile-title {
+            font-family: var(--font-display);
+            font-size: 3rem;
+            margin-bottom: 20px;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Profile Content Split */
+        .profile-content {
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 60px;
+            margin-bottom: 80px;
+        }
+
+        /* Left Side: Photo & Socials */
+        .profile-image-container {
+            /* Sticky removed */
+            position: relative;
+            /* 明示的にrelativeにしておく */
+        }
+
+        .profile-image {
+            width: 100%;
+            aspect-ratio: 3/4;
+            background: var(--bg-secondary);
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--text-muted);
+            color: var(--text-muted);
+            font-family: var(--font-display);
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            margin-bottom: 30px;
+        }
+
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: none;
+        }
+
+        .profile-image.has-image {
+            border: 1px solid var(--accent-cyan);
+        }
+
+        .profile-image.has-image img {
+            display: block;
+        }
+
+        .profile-image.has-image span {
+            display: none;
+        }
+
+        /* Social Links */
+        .profile-socials {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .profile-social-link {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 12px 20px;
+            background: var(--bg-secondary);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 6px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .profile-social-link:hover {
+            border-color: var(--accent-cyan);
+            transform: translateX(5px);
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
+        }
+
+        .profile-social-icon {
+            color: var(--accent-cyan);
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 1.2rem;
+            width: 24px;
+            text-align: center;
+        }
+
+        .profile-social-id {
+            color: var(--text-primary);
+            font-family: var(--font-display);
+            font-size: 0.9rem;
+            letter-spacing: 0.05em;
+        }
+
+        /* Right Side: Details */
+        .profile-details {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .profile-name-area {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 20px;
+        }
+
+        .profile-name-jp {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .profile-name-en {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            color: var(--accent-cyan);
+            margin-top: 5px;
+        }
+
+        .profile-job {
+            margin-top: 10px;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        .profile-section-title {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .profile-section-title::before {
+            content: '';
+            width: 4px;
+            height: 24px;
+            background: var(--accent-cyan);
+            display: block;
+        }
+
+        .profile-text {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            font-size: 1rem;
+        }
+
+        /* Skills Styles (Ported) */
+        .skills__grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .skills__item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 20px;
+            background: var(--bg-secondary);
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .skills__icon {
+            flex-shrink: 0;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--text-muted);
+            border-radius: 6px;
+            color: var(--accent-cyan);
+            font-family: var(--font-display);
+            font-weight: 700;
+        }
+
+        .skills__info {
+            flex: 1;
+        }
+
+        .skills__header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .skills__name {
+            font-family: var(--font-display);
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+
+        .skills__level {
+            font-family: var(--font-display);
+            font-size: 0.8rem;
+            color: var(--accent-cyan);
+        }
+
+        .skills__bar {
+            width: 100%;
+            height: 4px;
+            background: var(--bg-tertiary);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .skills__bar-fill {
+            height: 100%;
+            background: var(--accent-gradient);
+            border-radius: 2px;
+            box-shadow: 0 0 5px rgba(0, 240, 255, 0.3);
+        }
+
+        /* 5-step Dots Style */
+        .skills__dots {
+            display: flex;
+            gap: 6px;
+            width: 100%;
+        }
+
+        .skills__dot {
+            flex: 1;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            transform: skewX(-20deg);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .skills__dot.active {
+            background: var(--accent-gradient);
+            box-shadow: 0 0 8px rgba(0, 240, 255, 0.5);
+        }
+
+        .skills__icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        /* Roadmap Styles (Ported) */
+        .roadmap__timeline {
+            position: relative;
+            padding-left: 30px;
+            border-left: 2px solid rgba(0, 240, 255, 0.3);
+            margin-left: 10px;
+        }
+
+        .roadmap__item {
+            position: relative;
+            margin-bottom: 40px;
+        }
+
+        .roadmap__item:last-child {
+            margin-bottom: 0;
+        }
+
+        .roadmap__node {
+            position: absolute;
+            left: -46px;
+            /* 30px padding + 2px border + 14px offset */
+            top: 0;
+            width: 32px;
+            height: 32px;
+            background: var(--bg-primary);
+            border: 2px solid var(--accent-cyan);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-cyan);
+            font-size: 0.9rem;
+            box-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
+        }
+
+        .roadmap__content {
+            background: var(--bg-secondary);
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .roadmap__year {
+            font-family: var(--font-display);
+            font-size: 0.8rem;
+            color: var(--accent-purple);
+            letter-spacing: 0.1em;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .roadmap__title {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            color: var(--text-primary);
+        }
+
+        .roadmap__description {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 60px;
+            padding: 12px 40px;
+            background: transparent;
+            border: 1px solid var(--accent-cyan);
+            color: var(--accent-cyan);
+            text-decoration: none;
+            font-family: var(--font-display);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: var(--accent-cyan);
+            color: var(--bg-primary);
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .profile-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .profile-image-container {
+                position: static;
+                max-width: 300px;
+                margin: 0 auto;
+            }
+
+            .profile-name-jp {
+                font-size: 2rem;
+            }
+        }
+
+        /* Profile Info Grid Styles */
+        .profile-info-grid {
+            display: grid;
+            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            /* レスポンシブ対応 */
+        }
+
+        .profile-info-item {
+            background: var(--bg-secondary);
+            padding: 15px 20px;
+            border-radius: 6px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-left: 3px solid var(--accent-cyan);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .profile-info-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            border-color: rgba(0, 240, 255, 0.3);
+        }
+
+        .profile-info-label {
+            font-family: var(--font-display);
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 5px;
+            display: block;
+            letter-spacing: 0.05em;
+        }
+
+        .profile-info-value {
+            font-size: 1rem;
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="navbar__container">
+            <a href="preview.html" class="navbar__logo">
+                <span class="navbar__logo-text" id="clock-display"
+                    style="font-family: 'Orbitron', monospace; font-variant-numeric: tabular-nums; letter-spacing: 2px;">0000.00.00
+                    00:00:00</span>
+                <span class="navbar__logo-dot"></span>
+            </a>
+            <ul class="navbar__links">
+                <li><a href="preview.html#hero" class="navbar__link">TOP</a></li>
+                <li><a href="preview.html#philosophy" class="navbar__link">PHILOSOPHY</a></li>
+                <li><a href="profile.html" class="navbar__link" style="color: var(--accent-cyan);">ABOUT ME</a></li>
+                <li><a href="preview.html#works" class="navbar__link">WORKS</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+
+        <main class="profile-content">
+            <!-- Left Side -->
+            <div class="profile-image-container">
+                <div class="profile-image has-image">
+                    <img src="images/profile.png" alt="Ryushin Mano Profile">
+                </div>
+
+                <!-- SNS Links -->
+                <div class="profile-socials" style="margin-top: 20px;">
+                    <a href="#" class="profile-social-link">
+                        <span class="profile-social-icon">X</span>
+                        <span class="profile-social-id">@Ryushin_VFX</span>
+                    </a>
+                    <a href="#" class="profile-social-link">
+                        <span class="profile-social-icon">Ig</span>
+                        <span class="profile-social-id">@ryushin_mano</span>
+                    </a>
+                    <a href="#" class="profile-social-link">
+                        <span class="profile-social-icon">As</span>
+                        <span class="profile-social-id">Ryushin Mano</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Right Side -->
+            <div class="profile-details">
+                <div class="profile-name-area">
+                    <div class="profile-name-jp">間野 龍心</div>
+                    <div class="profile-name-en">Ryushin Mano</div>
+                    <p class="profile-job">Effect Designer / VFX Artist</p>
+                </div>
+
+                <!-- Biography / Basic Info Section -->
+                <div>
+                    <h3 class="profile-section-title">PROFILE INFO</h3>
+                    <div class="profile-info-grid">
+                        <div class="profile-info-item">
+                            <h4 class="profile-info-label">生年月日</h4>
+                            <p class="profile-info-value">2004年5月4日</p>
+                        </div>
+                        <div class="profile-info-item">
+                            <h4 class="profile-info-label">出身地</h4>
+                            <p class="profile-info-value">埼玉県</p>
+                        </div>
+                        <div class="profile-info-item">
+                            <h4 class="profile-info-label">学歴</h4>
+                            <p class="profile-info-value">
+                                埼玉県立所沢高等学校<br>
+                                東京国際工科専門職大学 工科学部<br>
+                                デジタルエンタテインメント学科<br>
+                                CGアニメーションコース
+                            </p>
+                        </div>
+                        <div class="profile-info-item">
+                            <h4 class="profile-info-label">長所</h4>
+                            <p class="profile-info-value">真面目 / 周りを見て行動できる</p>
+                        </div>
+                        <div class="profile-info-item">
+                            <h4 class="profile-info-label">短所</h4>
+                            <p class="profile-info-value">完璧主義</p>
+                        </div>
+                        <div class="profile-info-item">
+                            <h4 class="profile-info-label">趣味</h4>
+                            <p class="profile-info-value">野球観戦 / ゲーム / 写真撮影 / アニメ鑑賞</p>
+                        </div>
+                        <div class="profile-info-item">
+                            <h4 class="profile-info-label">好きなゲーム</h4>
+                            <p class="profile-info-value"
+                                style="color: var(--accent-cyan); font-size: 0.9rem; line-height: 1.6;">
+                                ポケットモンスター / 勝利の女神：NIKKE / ブルーアーカイブ / 崩壊：スターレイル / ゼンレスゾーンゼロ / アークナイツ：エンドフィールド / ウマ娘
+                                プリティーダービー etc...
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Skills Section -->
+                <div>
+                    <h3 class="profile-section-title">SKILLS</h3>
+                    <div class="skills__grid">
+                        <!-- Photoshop: 4/5 -->
+                        <div class="skills__item">
+                            <div class="skills__icon">
+                                <img src="icons/photoshop.png" alt="Photoshop">
+                            </div>
+                            <div class="skills__info">
+                                <div class="skills__header"><span class="skills__name">Photoshop</span><span
+                                        class="skills__level">Advanced</span></div>
+                                <div class="skills__dots">
+                                    <span class="skills__dot active"></span>
+                                    <span class="skills__dot active"></span>
+                                    <span class="skills__dot active"></span>
+                                    <span class="skills__dot active"></span>
+                                    <span class="skills__dot"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Unity: 4/5 -->
+                        <div class="skills__item">
+                            <div class="skills__icon">
+                                <img src="icons/unity.png" alt="Unity">
+                            </div>
+                            <div class="skills__info">
+                                <div class="skills__header"><span class="skills__name">Unity</span><span
+                                        class="skills__level">Advanced</span></div>
+                                <div class="skills__dots">
+                                    <span class="skills__dot active"></span>
+                                    <span class="skills__dot active"></span>
+                                    <span class="skills__dot active"></span>
+                                    <span class="skills__dot active"></span>
+                                    <span class="skills__dot"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- After Effects: 3/5 -->
+                        <div class="skills__item">
+                            <div class="skills__icon">
+                                <img src="icons/aftereffects.png" alt="After Effects">
+                            </div>
+                            <div class="skills__info">
+                                <div class="skills__header"><span class="skills__name">After Effects</span><span
+                                        class="skills__level">Intermediate</span></div>
+                                <div class="skills__dots">
+                                    <span class="skills__dot active"></span>
+                                    <span class="skills__dot active"></span>
+                                    <span class="skills__dot active"></span>
+                                    <span class="skills__dot"></span>
+                                    <span class="skills__dot"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Maya: 3/5 -->
+                        <div class="skills__item">
+                            <div class="skills__icon">
+                                <img src="icons/maya.png" alt="Maya">
+                            </div>
+                            <div class="skills__info">
+                                <div class="skills__header"><span class="skills__name">Maya</span><span
+                                        class="skills__level">Intermediate</span></div>
+                                <div class="skills__dots">
+                                    <span class="skills__dot active"></span>
+                                    <span class="skills__dot active"></span>
+                                    <span class="skills__dot active"></span>
+                                    <span class="skills__dot"></span>
+                                    <span class="skills__dot"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Blender: 2/5 -->
+                        <div class="skills__item">
+                            <div class="skills__icon">
+                                <img src="icons/blender.png" alt="Blender">
+                            </div>
+                            <div class="skills__info">
+                                <div class="skills__header"><span class="skills__name">Blender</span><span
+                                        class="skills__level">Basic</span></div>
+                                <div class="skills__dots">
+                                    <span class="skills__dot active"></span>
+                                    <span class="skills__dot active"></span>
+                                    <span class="skills__dot"></span>
+                                    <span class="skills__dot"></span>
+                                    <span class="skills__dot"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Unreal Engine: 2/5 -->
+                        <div class="skills__item">
+                            <div class="skills__icon">
+                                <img src="icons/unreal.png" alt="Unreal Engine">
+                            </div>
+                            <div class="skills__info">
+                                <div class="skills__header"><span class="skills__name">Unreal Engine</span><span
+                                        class="skills__level">Basic</span></div>
+                                <div class="skills__dots">
+                                    <span class="skills__dot active"></span>
+                                    <span class="skills__dot active"></span>
+                                    <span class="skills__dot"></span>
+                                    <span class="skills__dot"></span>
+                                    <span class="skills__dot"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- EmberGen: 1/5 -->
+                        <div class="skills__item">
+                            <div class="skills__icon">
+                                <img src="icons/embergen.png" alt="EmberGen">
+                            </div>
+                            <div class="skills__info">
+                                <div class="skills__header"><span class="skills__name">EmberGen</span><span
+                                        class="skills__level">Beginner</span></div>
+                                <div class="skills__dots">
+                                    <span class="skills__dot active"></span>
+                                    <span class="skills__dot"></span>
+                                    <span class="skills__dot"></span>
+                                    <span class="skills__dot"></span>
+                                    <span class="skills__dot"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Houdini: 1/5 -->
+                        <div class="skills__item">
+                            <div class="skills__icon">
+                                <img src="icons/houdini.png" alt="Houdini">
+                            </div>
+                            <div class="skills__info">
+                                <div class="skills__header"><span class="skills__name">Houdini</span><span
+                                        class="skills__level">Beginner</span></div>
+                                <div class="skills__dots">
+                                    <span class="skills__dot active"></span>
+                                    <span class="skills__dot"></span>
+                                    <span class="skills__dot"></span>
+                                    <span class="skills__dot"></span>
+                                    <span class="skills__dot"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Roadmap Section -->
+                <div>
+                    <h3 class="profile-section-title">ROADMAP</h3>
+                    <div class="roadmap__timeline">
+                        <div class="roadmap__item">
+                            <div class="roadmap__node">
+                                <div class="roadmap__icon">🎓</div>
+                            </div>
+                            <div class="roadmap__content">
+                                <span class="roadmap__year">2023 - 3rd Year</span>
+                                <h3 class="roadmap__title">VFXへの転向</h3>
+                                <p class="roadmap__description">2Dデザインからエフェクト制作へ。Unity VFX Graphの基礎習得。</p>
+                            </div>
+                        </div>
+                        <div class="roadmap__item">
+                            <div class="roadmap__node">
+                                <div class="roadmap__icon">🚀</div>
+                            </div>
+                            <div class="roadmap__content">
+                                <span class="roadmap__year">2024 - 4th Year</span>
+                                <h3 class="roadmap__title">チーム開発・インターン経験</h3>
+                                <p class="roadmap__description">ゲームジャムや夏期インターンシップを通じ、実務に近いワークフローを経験。</p>
+                            </div>
+                        </div>
+                        <div class="roadmap__item">
+                            <div class="roadmap__node">
+                                <div class="roadmap__icon">✨</div>
+                            </div>
+                            <div class="roadmap__content">
+                                <span class="roadmap__year">Current</span>
+                                <h3 class="roadmap__title">卒業制作 & 就職活動</h3>
+                                <p class="roadmap__description">心理効果を狙ったエフェクトの研究と実装。ポートフォリオ完成。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script>
+        // Clock Function
+        function updateClock() {
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const day = String(now.getDate()).padStart(2, '0');
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+
+            const timeString = `${year}.${month}.${day} ${hours}:${minutes}:${seconds}`;
+
+            const clockElement = document.getElementById('clock-display');
+            if (clockElement) {
+                clockElement.textContent = timeString;
+            }
+        }
+
+        setInterval(updateClock, 1000);
+        updateClock(); // 初回実行
+    </script>
+    <script src="js/electric-cursor.js"></script>
+</body>
+
+</html>
