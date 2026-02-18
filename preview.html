@@ -1143,7 +1143,7 @@
             <h1 class="hero__title" data-text="Ryushin Mano">Ryushin Mano</h1>
             <p class="hero__subtitle">Effect Designer</p>
             <div class="hero__line"></div>
-            <p class="hero__tagline">"人"に届けるデザイナー</p>
+            <p class="hero__tagline">一瞬で一生の記憶を</p>
         </div>
         <div class="hero__scroll">
             <span class="hero__scroll-text">Scroll</span>
@@ -1208,8 +1208,8 @@
                     <div class="philosophy__section">
                         <h3 class="philosophy__heading">Why Effect?</h3>
                         <p class="philosophy__text">
-                            エフェクトは一瞬で人を惹きつけ、プレイヤーをゲームの世界へ招き入れる「招待状」だと感じています。<br>
-                            自分の作ったエフェクトがきっかけで誰かがゲームを始め、新たな出会いや発見を通じて人生に彩りをもたらす。そんな「きっかけ」になれる可能性に、強く心を惹かれました。
+                            エフェクトには一瞬で人を惹きつけ、プレイヤーをゲームの世界へ招き入れる力があると感じています。<br>
+                            自分の作ったエフェクトがきっかけで誰かがゲームを始め、新たな出会いや発見を通じて人生に彩り(Effect)をもたらす。エフェクトが持つそんな「きっかけ」になれる可能性に、強く心を惹かれました。
                         </p>
                     </div>
 
@@ -1224,9 +1224,8 @@
                     <div class="philosophy__section">
                         <h3 class="philosophy__heading">The Origin</h3>
                         <p class="philosophy__text">
-                            原体験は、幼い頃にプレイした『ポケモン』でした。「かっこいいからこの技を使いたい」と思わせる技エフェクトの魅力。それがエフェクトへの興味の入り口でした。<br>
-                            現在は、エフェクトが単なる演出を超え、ゲーム固有の世界観を決定づける重要な要素であると実感しています。<br>
-                            一瞬でも脳裏に焼き付き、何度でも見たくなる気持ちのいい表現。そんな「人の心に届く記憶」を作るため、エフェクトデザイナーとしての道を歩んでいます。
+                            思えば一番最初にエフェクトに魅了されたのは、幼い頃にプレイした『ポケモン』でした。「かっこいいからこの技を使いたい」と思わせるエフェクトの魅力。それが現在のエフェクト制作への興味の入り口だったように思えます。<br>
+                            私は"何度でも見たくなる気持ちのいいエフェクト"を生み出し、その先にある「人の心に届く記憶」を作るエフェクトデザイナーになることが目標です。物理法則の正しい動きとアニメ的な誇張表現を掛け合わせ、エフェクトを見たプレイヤーの鳥肌を立たせるにはどうすればいいかを突き詰めることで私の目標を成し遂げることが出来ると思っています。一人のプレイヤーとしてどんな表現に興奮するか自己観察をし、エフェクトデザイナーとしてその興奮をいろいろな人に届けたいという思いで力をつけています。
                         </p>
                     </div>
                 </div>
@@ -1249,7 +1248,7 @@
             <h2 class="section-title">Works</h2>
             <div class="works-banners">
                 <a href="works_vfx.html" class="works-banner">
-                    <span class="works-banner__text">VFX</span>
+                    <span class="works-banner__text">Game Effects</span>
                     <span class="works-banner__arrow">→</span>
                 </a>
                 <a href="works_2d.html" class="works-banner">
@@ -1350,8 +1349,7 @@
         <div class="container">
             <div class="footer__content">
                 <div class="footer__brand">
-                    <span class="footer__logo">RM</span>
-                    <span class="footer__logo-dot"></span>
+                    <!-- RM logo removed -->
                 </div>
                 <div class="footer__links">
                     <a href="#hero" class="footer__link">TOP</a>
@@ -1388,7 +1386,8 @@
                 const targetElement = document.querySelector(targetId);
                 if (targetElement) {
                     targetElement.scrollIntoView({
-                        behavior: 'smooth'
+                        behavior: 'smooth',
+                        block: 'center'
                     });
                 }
             });

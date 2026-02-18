@@ -1121,15 +1121,17 @@
     <!-- Navbar -->
     <nav class="navbar" id="navbar">
         <div class="navbar__container">
-            <a href="preview.html" class="navbar__logo">
+            <a href="preview.html#hero" class="navbar__logo">
                 <span class="navbar__logo-text" id="clock-display"
                     style="font-family: 'Orbitron', monospace; font-variant-numeric: tabular-nums; letter-spacing: 2px;">0000.00.00
                     00:00:00</span>
                 <span class="navbar__logo-dot"></span>
             </a>
             <ul class="navbar__links">
-                <li><a href="preview.html" class="navbar__link">TOP</a></li>
-                <!-- Other links can point back to home sections or stay if global -->
+                <li><a href="preview.html#hero" class="navbar__link">TOP</a></li>
+                <li><a href="preview.html#philosophy" class="navbar__link">PHILOSOPHY</a></li>
+                <li><a href="preview.html#about" class="navbar__link">ABOUT ME</a></li>
+                <li><a href="preview.html#works" class="navbar__link">WORKS</a></li>
             </ul>
         </div>
     </nav>
@@ -1173,7 +1175,7 @@
     <main>
         <section class="works section" style="padding-top: 150px; min-height: 80vh;">
             <div class="container">
-                <h2 class="section-title" id="page-title">VFX WORKS</h2>
+                <h2 class="section-title" id="page-title">Game Effects Works</h2>
 
                 <div class="works__grid" id="works-container">
                     <article class="works__card" data-category="vfx">
@@ -1186,9 +1188,9 @@
                             </div>
                         </div>
                         <div class="works__card-content">
-                            <span class="works__card-category">VFX</span>
+
                             <h3 class="works__card-title">Cute Beam&Explosion</h3>
-                            <p class="works__card-description">幸せいっぱいキュートなビームで大爆発</p>
+                            <p class="works__card-description">"幸せ×魔法少女×爽快感" ビーム&爆発エフェクト</p>
                             <div class="works__card-tags">
                                 <span class="works__card-tag">Unity</span>
                                 <span class="works__card-tag">VFX Graph</span>
@@ -1203,7 +1205,7 @@
                             </div>
                         </div>
                         <div class="works__card-content">
-                            <span class="works__card-category">VFX</span>
+
                             <h3 class="works__card-title">魔法陣エフェクト</h3>
                             <p class="works__card-description">ファンタジー系スキルエフェクト</p>
                             <div class="works__card-tags">
@@ -1220,7 +1222,7 @@
                             </div>
                         </div>
                         <div class="works__card-content">
-                            <span class="works__card-category">VFX</span>
+
                             <h3 class="works__card-title">パーティクルシステム</h3>
                             <p class="works__card-description">汎用パーティクルライブラリ</p>
                             <div class="works__card-tags">
@@ -1237,7 +1239,7 @@
                             </div>
                         </div>
                         <div class="works__card-content">
-                            <span class="works__card-category">VFX</span>
+
                             <h3 class="works__card-title">炎・煙エフェクト</h3>
                             <p class="works__card-description">EmberGenを使用した流体シミュレーション</p>
                             <div class="works__card-tags">
@@ -1278,8 +1280,7 @@
         <div class="container">
             <div class="footer__content">
                 <div class="footer__brand">
-                    <span class="footer__logo">RM</span>
-                    <span class="footer__logo-dot"></span>
+                    <!-- RM logo removed -->
                 </div>
                 <div class="footer__links">
                     <a href="#hero" class="footer__link">TOP</a>
@@ -1316,7 +1317,8 @@
                 const targetElement = document.querySelector(targetId);
                 if (targetElement) {
                     targetElement.scrollIntoView({
-                        behavior: 'smooth'
+                        behavior: 'smooth',
+                        block: 'center'
                     });
                 }
             });

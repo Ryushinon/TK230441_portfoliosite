@@ -1,0 +1,55 @@
+graph LR
+    %% ------------------------------
+    %% Styles (Dark Mode Theme)
+    %% ------------------------------
+    %% Background is usually handled by embedding environment, but nodes can be styled.
+    classDef default fill:#1a1a1a,stroke:#4a4a4a,stroke-width:1.5px,color:#e0e0e0,rx:5,ry:5
+    classDef highlight fill:#1f2937,stroke:#00f0ff,stroke-width:2px,color:#fff,rx:5,ry:5
+
+    %% ------------------------------
+    %% Nodes
+    %% ------------------------------
+    A[設定決め]
+    B[絵コンテ制作]
+    C[リファレンス<br>集め]
+    D[ラフデザイン]
+    E[必要要素の<br>洗い出し]
+    
+    G[エフェクト<br>作成]
+    H[カメラワーク<br>設定]
+    I[配置]
+
+    %% ------------------------------
+    %% Branching with Vertical Alignment
+    %% ------------------------------
+    subgraph Parallel [ ]
+        direction TB
+        %% Force Asset (J) above Texture (F)
+        J[アセット探し]
+        %% Invisible link to maintain order
+        J ~~~ F[テクスチャ・<br>メッシュ制作]
+    end
+
+    %% ------------------------------
+    %% Flow Connections
+    %% ------------------------------
+    %% Main Line
+    A --> B --> C --> D --> E
+    
+    %% Branch
+    E --> J
+    E --> F
+    
+    %% Merge
+    J --> G
+    F --> G
+    
+    %% Post-Merge
+    G --> H --> I
+
+    %% ------------------------------
+    %% Feedback Loop (Bottom Curve)
+    %% ------------------------------
+    %% G back to C with a curve style hint
+    G -.-> C
+    linkStyle 10 stroke:#666,stroke-width:1.5px,stroke-dasharray: 5 5,fill:none
