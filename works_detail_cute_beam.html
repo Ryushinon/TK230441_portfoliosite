@@ -1122,29 +1122,28 @@
        Sticky TOC & Layout
        ======================================== */
         .content-wrapper {
-            display: flex;
-            gap: 40px;
-            align-items: flex-start;
             position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+            overflow: visible;
+            /* Allow TOC to sit outside */
         }
 
         .main-content {
-            flex: 1;
-            min-width: 0;
-            /* Prevent flex overflow */
+            width: 100%;
         }
 
         .sidebar-toc {
-            width: 240px;
-            position: -webkit-sticky;
-            position: sticky;
-            top: 100px;
-            /* Below navbar */
+            width: 200px;
+            position: fixed;
+            top: 200px;
+            left: calc(50% - 450px - 350px);
+            /* Center - HalfContent - Offset */
             flex-shrink: 0;
             display: none;
-            /* Default hidden on mobile */
+            /* Default hidden */
             padding: 20px 0;
-            /* Remove background/border to be more clean, or keep it per plan. User asked for styles. Plan said bg/border. Let's stick to plan but maybe cleaner. */
+            z-index: 10;
         }
 
         .sidebar-toc__title {
@@ -1161,11 +1160,10 @@
             list-style: none;
             padding: 0;
             margin: 0;
-            border-left: 2px solid var(--bg-tertiary);
         }
 
         .sidebar-toc__item {
-            margin-bottom: 0;
+            margin-bottom: 5px;
             position: relative;
         }
 
@@ -1192,7 +1190,7 @@
             background: linear-gradient(90deg, rgba(0, 240, 255, 0.05), transparent);
         }
 
-        @media (min-width: 1024px) {
+        @media (min-width: 1500px) {
             .sidebar-toc {
                 display: block;
             }
