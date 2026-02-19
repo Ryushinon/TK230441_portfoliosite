@@ -1117,6 +1117,92 @@
                 text-align: center;
             }
         }
+
+        /* ========================================
+       Sticky TOC & Layout
+       ======================================== */
+        .content-wrapper {
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+            position: relative;
+        }
+
+        .main-content {
+            flex: 1;
+            min-width: 0;
+            /* Prevent flex overflow */
+        }
+
+        .sidebar-toc {
+            width: 240px;
+            position: -webkit-sticky;
+            position: sticky;
+            top: 100px;
+            /* Below navbar */
+            flex-shrink: 0;
+            display: none;
+            /* Default hidden on mobile */
+            padding: 20px 0;
+            /* Remove background/border to be more clean, or keep it per plan. User asked for styles. Plan said bg/border. Let's stick to plan but maybe cleaner. */
+        }
+
+        .sidebar-toc__title {
+            font-family: var(--font-display);
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            letter-spacing: 0.1em;
+        }
+
+        .sidebar-toc__list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            border-left: 2px solid var(--bg-tertiary);
+        }
+
+        .sidebar-toc__item {
+            margin-bottom: 0;
+            position: relative;
+        }
+
+        .sidebar-toc__link {
+            display: block;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            padding: 8px 15px;
+            border-left: 2px solid transparent;
+            margin-left: -2px;
+            /* Overlap parent border */
+        }
+
+        .sidebar-toc__link:hover {
+            color: var(--accent-cyan);
+        }
+
+        .sidebar-toc__link.active {
+            color: var(--accent-cyan);
+            border-left-color: var(--accent-cyan);
+            font-weight: 700;
+            background: linear-gradient(90deg, rgba(0, 240, 255, 0.05), transparent);
+        }
+
+        @media (min-width: 1024px) {
+            .sidebar-toc {
+                display: block;
+            }
+        }
+
+        /* Adjust existing works-detail and process-section margin since they are now in a flex container */
+        .process-section {
+            margin-top: 80px !important;
+            /* Reduce top margin slightly */
+        }
     </style>
 </head>
 
@@ -1180,1019 +1266,1041 @@
             <div class="container">
                 <h2 class="section-title" id="page-title">Game Effects Works</h2>
 
-                <div class="works-detail" style="max-width: 900px; margin: 0 auto; color: var(--text-primary);">
+                <div class="content-wrapper">
+                    <div class="main-content">
+                        <div class="works-detail" style="max-width: 900px; margin: 0 auto; color: var(--text-primary);">
 
-                    <!-- Back Button (Breadcrumb style) -->
-                    <div style="margin-bottom: 30px;">
-                        <a href="works_vfx.html"
-                            style="color: var(--text-muted); text-decoration: none; font-family: var(--font-display); font-size: 0.9rem;">
-                            &lt; BACK TO GAME EFFECTS LIST
-                        </a>
-                    </div>
-
-                    <!-- Title -->
-                    <h1
-                        style="font-family: var(--font-display); font-size: 2.5rem; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 2px;">
-                        Cute Beam & Explosion</h1>
-                    <p
-                        style="color: var(--accent-cyan); font-family: var(--font-display); font-size: 1.1rem; margin-bottom: 40px;">
-                        "幸せ×魔法少女×爽快感" ビーム&爆発エフェクト</p>
-
-                    <!-- Main Visual -->
-                    <div
-                        style="width: 100%; aspect-ratio: 16/9; background: #000; margin-bottom: 40px; border: 1px solid var(--bg-tertiary); overflow: hidden; position: relative;">
-                        <!-- Placeholder for video/image -->
-                        <video src="videos/cute_beam_0216.mp4" controls autoplay loop muted playsinline
-                            style="width: 100%; height: 100%; object-fit: cover;">
-                            Your browser does not support the video tag.
-                        </video>
-                    </div>
-
-                    <!-- Content Grid -->
-                    <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 40px;">
-
-                        <!-- Description -->
-                        <div class="detail-description">
-                            <h3
-                                style="font-family: var(--font-display); font-size: 1.2rem; color: var(--accent-purple); margin-bottom: 20px;">
-                                PROJECT OVERVIEW</h3>
-                            <p style="line-height: 1.8; color: var(--text-secondary); margin-bottom: 20px;">
-                                <span style="color: #FFEB3B; font-weight: bold;">幸せ</span>×<span
-                                    style="color: #FF69B4; font-weight: bold;">魔法少女</span>×<span
-                                    style="color: #76FF03; font-weight: bold;">爽快感</span>をコンセプトに制作したオリジナルエフェクト作品です。<br>
-                                <span
-                                    style="color: #FFEB3B; font-weight: bold;">幸せ</span>の要素としてハートをたくさん詰め込み、色はアクセントに黄色を使いました。ビームの先端ではハートを4つ並べ四葉のクローバーのような見た目にした点にこだわりました。<br>
-                                <span
-                                    style="color: #FF69B4; font-weight: bold;">魔法少女</span>の要素として彩度の高いピンク色をベースカラーに使用しました。ピンク色に幅を持たせることで飽きが来ないような見た目になるように工夫しています。<br>
-                                <span
-                                    style="color: #76FF03; font-weight: bold;">爽快感</span>を得てもらうために爆発の直前に一瞬白黒のポストエフェクトを用いたり爆発を勢いよく広げるようにしました。
-                            </p>
-                        </div>
-
-                        <!-- Info / Tech Stack -->
-                        <div class="detail-info"
-                            style="background: var(--bg-tertiary); padding: 30px; border-radius: 8px; height: fit-content;">
-                            <h3 style="font-family: var(--font-display); font-size: 1.1rem; margin-bottom: 20px;">
-                                DETAILS</h3>
-
-                            <div style="margin-bottom: 20px;">
-                                <span
-                                    style="display: block; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 5px;">ROLE</span>
-                                <span style="font-size: 1rem;">Game Effect</span>
-                            </div>
-
-                            <div style="margin-bottom: 20px;">
-                                <span
-                                    style="display: block; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 5px;">TOOLS</span>
-                                <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-                                    <span
-                                        style="padding: 4px 10px; background: var(--bg-primary); border-radius: 4px; font-size: 0.85rem; color: var(--accent-cyan);">Unity</span>
-                                    <span
-                                        style="padding: 4px 10px; background: var(--bg-primary); border-radius: 4px; font-size: 0.85rem; color: var(--accent-cyan);">NOVA
-                                        shader</span>
-                                    <span
-                                        style="padding: 4px 10px; background: var(--bg-primary); border-radius: 4px; font-size: 0.85rem; color: var(--accent-cyan);">Photoshop</span>
-                                    <span
-                                        style="padding: 4px 10px; background: var(--bg-primary); border-radius: 4px; font-size: 0.85rem; color: var(--accent-cyan);">After
-                                        Effects</span>
-                                    <span
-                                        style="padding: 4px 10px; background: var(--bg-primary); border-radius: 4px; font-size: 0.85rem; color: var(--accent-cyan);">Substance
-                                        3D Designer</span>
-                                    <span
-                                        style="padding: 4px 10px; background: var(--bg-primary); border-radius: 4px; font-size: 0.85rem; color: var(--accent-cyan);">EmberGen</span>
-                                </div>
-                            </div>
-                            <div style="margin-bottom: 0;">
-                                <span
-                                    style="display: block; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 5px;">CREATION
-                                    TIME</span>
-                                <span style="font-size: 1rem;">約97時間</span>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-                <!-- Process Section -->
-                <div class="process-section" style="margin-top: 100px;">
-                    <h2
-                        style="font-family: var(--font-display); font-size: 1.8rem; text-align: center; margin-bottom: 50px; color: var(--text-primary); letter-spacing: 0.1em;">
-                        PROCESS <span
-                            style="display: block; font-size: 0.9rem; color: var(--accent-cyan); margin-top: 10px; font-weight: normal; letter-spacing: 0.05em;">制作過程</span>
-                    </h2>
-
-                    <!-- Table of Contents -->
-                    <div class="process-toc"
-                        style="background: var(--bg-tertiary); padding: 40px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.05); margin-bottom: 80px; position: relative; overflow: hidden;">
-                        <!-- Glow effect -->
-                        <div
-                            style="position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: var(--accent-gradient); opacity: 0.5;">
-                        </div>
-
-                        <h3
-                            style="font-family: var(--font-display); font-size: 1.2rem; text-align: center; margin-bottom: 30px; color: var(--text-primary); letter-spacing: 0.1em;">
-                            目次</h3>
-
-                        <ul
-                            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; list-style: none; padding: 0; margin: 0; max-width: 900px; margin-left: auto; margin-right: auto;">
-                            <!-- Style for links defined inline for portability -->
-
-                            <li><a href="#workflow" class="process-toc-link"
-                                    style="display: block; padding: 12px 24px; background: var(--bg-primary); border: 1px solid var(--text-muted); color: var(--text-secondary); text-decoration: none; border-radius: 30px; transition: all 0.3s ease; font-family: var(--font-display); font-size: 0.9rem; text-align: center;"
-                                    onmouseover="this.style.borderColor='var(--accent-cyan)'; this.style.color='var(--accent-cyan)'; this.style.boxShadow='0 0 15px rgba(0, 240, 255, 0.2)';"
-                                    onmouseout="this.style.borderColor='var(--text-muted)'; this.style.color='var(--text-secondary)'; this.style.boxShadow='none';">Workflow</a>
-                            </li>
-                            <li><a href="#settings" class="process-toc-link"
-                                    style="display: block; padding: 12px 24px; background: var(--bg-primary); border: 1px solid var(--text-muted); color: var(--text-secondary); text-decoration: none; border-radius: 30px; transition: all 0.3s ease; font-family: var(--font-display); font-size: 0.9rem; text-align: center;"
-                                    onmouseover="this.style.borderColor='var(--accent-cyan)'; this.style.color='var(--accent-cyan)'; this.style.boxShadow='0 0 15px rgba(0, 240, 255, 0.2)';"
-                                    onmouseout="this.style.borderColor='var(--text-muted)'; this.style.color='var(--text-secondary)'; this.style.boxShadow='none';">Settings</a>
-                            </li>
-                            <li><a href="#reference" class="process-toc-link"
-                                    style="display: block; padding: 12px 24px; background: var(--bg-primary); border: 1px solid var(--text-muted); color: var(--text-secondary); text-decoration: none; border-radius: 30px; transition: all 0.3s ease; font-family: var(--font-display); font-size: 0.9rem; text-align: center;"
-                                    onmouseover="this.style.borderColor='var(--accent-cyan)'; this.style.color='var(--accent-cyan)'; this.style.boxShadow='0 0 15px rgba(0, 240, 255, 0.2)';"
-                                    onmouseout="this.style.borderColor='var(--text-muted)'; this.style.color='var(--text-secondary)'; this.style.boxShadow='none';">Reference</a>
-                            </li>
-                            <li><a href="#storyboard" class="process-toc-link"
-                                    style="display: block; padding: 12px 24px; background: var(--bg-primary); border: 1px solid var(--text-muted); color: var(--text-secondary); text-decoration: none; border-radius: 30px; transition: all 0.3s ease; font-family: var(--font-display); font-size: 0.9rem; text-align: center;"
-                                    onmouseover="this.style.borderColor='var(--accent-cyan)'; this.style.color='var(--accent-cyan)'; this.style.boxShadow='0 0 15px rgba(0, 240, 255, 0.2)';"
-                                    onmouseout="this.style.borderColor='var(--text-muted)'; this.style.color='var(--text-secondary)'; this.style.boxShadow='none';">Storyboard</a>
-                            </li>
-                            <li><a href="#rough-design" class="process-toc-link"
-                                    style="display: block; padding: 12px 24px; background: var(--bg-primary); border: 1px solid var(--text-muted); color: var(--text-secondary); text-decoration: none; border-radius: 30px; transition: all 0.3s ease; font-family: var(--font-display); font-size: 0.9rem; text-align: center;"
-                                    onmouseover="this.style.borderColor='var(--accent-cyan)'; this.style.color='var(--accent-cyan)'; this.style.boxShadow='0 0 15px rgba(0, 240, 255, 0.2)';"
-                                    onmouseout="this.style.borderColor='var(--text-muted)'; this.style.color='var(--text-secondary)'; this.style.boxShadow='none';">Rough
-                                    Design</a></li>
-                            <li><a href="#mesh" class="process-toc-link"
-                                    style="display: block; padding: 12px 24px; background: var(--bg-primary); border: 1px solid var(--text-muted); color: var(--text-secondary); text-decoration: none; border-radius: 30px; transition: all 0.3s ease; font-family: var(--font-display); font-size: 0.9rem; text-align: center;"
-                                    onmouseover="this.style.borderColor='var(--accent-cyan)'; this.style.color='var(--accent-cyan)'; this.style.boxShadow='0 0 15px rgba(0, 240, 255, 0.2)';"
-                                    onmouseout="this.style.borderColor='var(--text-muted)'; this.style.color='var(--text-secondary)'; this.style.boxShadow='none';">Mesh</a>
-                            </li>
-                            <li><a href="#texture" class="process-toc-link"
-                                    style="display: block; padding: 12px 24px; background: var(--bg-primary); border: 1px solid var(--text-muted); color: var(--text-secondary); text-decoration: none; border-radius: 30px; transition: all 0.3s ease; font-family: var(--font-display); font-size: 0.9rem; text-align: center;"
-                                    onmouseover="this.style.borderColor='var(--accent-cyan)'; this.style.color='var(--accent-cyan)'; this.style.boxShadow='0 0 15px rgba(0, 240, 255, 0.2)';"
-                                    onmouseout="this.style.borderColor='var(--text-muted)'; this.style.color='var(--text-secondary)'; this.style.boxShadow='none';">Texture</a>
-                            </li>
-                            <li><a href="#points" class="process-toc-link"
-                                    style="display: block; padding: 12px 24px; background: var(--bg-primary); border: 1px solid var(--text-muted); color: var(--text-secondary); text-decoration: none; border-radius: 30px; transition: all 0.3s ease; font-family: var(--font-display); font-size: 0.9rem; text-align: center;"
-                                    onmouseover="this.style.borderColor='var(--accent-cyan)'; this.style.color='var(--accent-cyan)'; this.style.boxShadow='0 0 15px rgba(0, 240, 255, 0.2)';"
-                                    onmouseout="this.style.borderColor='var(--text-muted)'; this.style.color='var(--text-secondary)'; this.style.boxShadow='none';">Points</a>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <!-- Process Sections (Placeholders) -->
-
-
-                    <!-- Mermaid.js -->
-
-                </div>
-
-
-                <!-- Workflow Section (HTML/CSS Version) -->
-                <div id="workflow" style="margin-bottom: 120px; scroll-margin-top: 100px;">
-                    <h3
-                        style="font-family: var(--font-display); font-size: 1.4rem; color: var(--text-primary); margin-bottom: 40px; border-left: 4px solid var(--accent-cyan); padding-left: 15px;">
-                        WORKFLOW <span
-                            style="font-size: 0.9rem; color: var(--text-muted); margin-left: 10px;">ワークフロー</span>
-                    </h3>
-
-                    <div class="workflow-container">
-                        <!-- Step 1 -->
-                        <div class="workflow-step">
-                            <div class="workflow-main-row">
-                                <div class="workflow-box">設定決め</div>
-                                <div class="workflow-arrow"></div>
-                            </div>
-                        </div>
-                        <!-- Step 2 -->
-                        <div class="workflow-step">
-                            <div class="workflow-main-row">
-                                <div class="workflow-box">絵コンテ制作</div>
-                                <div class="workflow-arrow"></div>
-                            </div>
-                        </div>
-                        <!-- Step 3 -->
-                        <div class="workflow-step">
-                            <div class="workflow-main-row">
-                                <div class="workflow-box">リファレンス<br>集め</div>
-                                <div class="workflow-arrow"></div>
-                            </div>
-                        </div>
-                        <!-- Step 4 -->
-                        <div class="workflow-step">
-                            <div class="workflow-main-row">
-                                <div class="workflow-box">ラフデザイン</div>
-                                <div class="workflow-arrow"></div>
-                            </div>
-                        </div>
-                        <!-- Step 5 -->
-                        <div class="workflow-step">
-                            <div class="workflow-main-row">
-                                <div class="workflow-box">必要要素の<br>洗い出し</div>
-                                <div class="workflow-arrow"></div>
-                            </div>
-                        </div>
-                        <!-- Step 6 (Asset Search moved to Step 7) -->
-                        <div class="workflow-step">
-                            <div class="workflow-main-row">
-                                <div class="workflow-box">テクスチャ・<br>メッシュ制作</div>
-                                <div class="workflow-arrow"></div>
-                            </div>
-                        </div>
-                        <!-- Step 7 (Asset Search added here) -->
-                        <div class="workflow-step">
-                            <div class="workflow-upper">
-                                <div class="workflow-box workflow-box--upper">アセット探し</div>
-                                <div class="workflow-arrow-down"></div>
-                            </div>
-                            <div class="workflow-main-row">
-                                <div class="workflow-box">エフェクト作成</div>
-                                <div class="workflow-arrow"></div>
-                            </div>
-                        </div>
-                        <!-- Step 8 (Camera Work) -->
-                        <div class="workflow-step">
-                            <div class="workflow-upper">
-                                <div class="workflow-box workflow-box--upper">カメラワーク設定</div>
-                                <div class="workflow-arrow-down"></div>
-                            </div>
-                            <div class="workflow-main-row">
-                                <div class="workflow-box">配置</div>
-                                <!-- Last arrow hidden -->
-                            </div>
-                        </div>
-                    </div>
-
-                    <style>
-                        .workflow-container {
-                            display: flex;
-                            flex-wrap: nowrap;
-                            justify-content: flex-start;
-                            gap: 10px;
-                            max-width: 100%;
-                            overflow-x: auto;
-                            padding-bottom: 20px;
-                            padding-left: 20px;
-                            padding-right: 20px;
-                            align-items: flex-end;
-                            /* Align main flow to bottom */
-                        }
-
-                        /* Hide scrollbar for Chrome, Safari and Opera */
-                        .workflow-container::-webkit-scrollbar {
-                            height: 8px;
-                        }
-
-                        .workflow-container::-webkit-scrollbar-track {
-                            background: var(--bg-tertiary);
-                            border-radius: 4px;
-                        }
-
-                        .workflow-container::-webkit-scrollbar-thumb {
-                            background: var(--text-muted);
-                            border-radius: 4px;
-                        }
-
-                        .workflow-container::-webkit-scrollbar-thumb:hover {
-                            background: var(--accent-cyan);
-                        }
-
-                        .workflow-step {
-                            display: flex;
-                            flex-direction: column;
-                            align-items: center;
-                            gap: 0;
-                            /* Changed from 10px to 0 for tighter arrows */
-                            flex-shrink: 0;
-                        }
-
-                        .workflow-upper {
-                            margin-bottom: 0;
-                            /* Center the upper box relative to the step */
-                            display: flex;
-                            flex-direction: column;
-                            align-items: center;
-                            justify-content: center;
-                            width: 100%;
-                        }
-
-
-                        .workflow-arrow-down {
-                            position: relative;
-                            width: 2px;
-                            height: 30px;
-                            /* Reduced from 60px to match main arrow */
-                            background: var(--text-muted);
-                            margin: 10px auto;
-                            /* Match gap of main line */
-                        }
-
-                        .workflow-arrow-down::after {
-                            content: "";
-                            position: absolute;
-                            bottom: 0;
-                            left: 50%;
-                            transform: translateX(-50%);
-                            width: 0;
-                            height: 0;
-                            border-left: 6px solid transparent;
-                            border-right: 6px solid transparent;
-                            border-top: 8px solid var(--text-muted);
-                        }
-
-                        .workflow-main-row {
-                            display: flex;
-                            align-items: center;
-                            gap: 10px;
-                        }
-
-                        .workflow-box {
-                            background: var(--bg-tertiary);
-                            border: 1px solid var(--text-muted);
-                            color: var(--text-primary);
-                            padding: 10px 15px;
-                            border-radius: 8px;
-                            font-size: 0.85rem;
-                            text-align: center;
-                            min-width: 100px;
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                            height: 50px;
-                            transition: all 0.3s ease;
-                            position: relative;
-                            box-sizing: border-box;
-                        }
-
-                        .workflow-box--upper {
-                            /* Inherit default colors */
-                            font-size: 0.8rem;
-                            height: 40px;
-                            min-width: 100px;
-                        }
-
-                        .workflow-box:hover {
-                            border-color: var(--accent-cyan);
-                            box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
-                            transform: translateY(-3px);
-                        }
-
-                        .workflow-arrow {
-                            display: block;
-                            width: auto;
-                            height: auto;
-                            border: none;
-                            color: var(--text-muted);
-                            font-size: 1.5rem;
-                            font-family: var(--font-display), monospace;
-                            flex-shrink: 0;
-                            line-height: 1;
-                        }
-
-                        .workflow-arrow::before {
-                            content: "→";
-                        }
-
-                        /* Hide arrow for the LAST main row item only */
-                        /* Since the arrow is inside workflow-main-row inside workflow-step, we target the step */
-                        .workflow-step:last-child .workflow-main-row .workflow-arrow {
-                            display: none;
-                        }
-
-                        @media (max-width: 768px) {
-                            .workflow-container {
-                                padding-bottom: 20px;
-                            }
-                        }
-                    </style>
-                </div>
-
-                <div id="settings" style="margin-bottom: 80px; scroll-margin-top: 100px;">
-                    <h3
-                        style="font-family: var(--font-display); font-size: 1.4rem; color: var(--text-primary); margin-bottom: 30px; border-left: 4px solid var(--accent-cyan); padding-left: 15px;">
-                        SETTINGS <span style="font-size: 0.9rem; color: var(--text-muted); margin-left: 10px;">設定</span>
-                    </h3>
-
-                    <div class="settings-grid" style="display: grid; grid-template-columns: 1fr; gap: 30px;">
-
-                        <!-- Concept & Theme -->
-                        <div style="background: var(--bg-tertiary); padding: 30px; border-radius: 8px;">
-                            <h4
-                                style="color: var(--accent-cyan); margin-bottom: 15px; font-size: 1.1rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px;">
-                                コンセプト・テーマ</h4>
-                            <dl style="display: grid; grid-template-columns: 120px 1fr; gap: 10px 20px; margin: 0;">
-                                <dt style="color: var(--text-muted); font-weight: bold;">エフェクト内容</dt>
-                                <dd style="margin: 0;">チャージ → ビーム → 白黒フラッシュ → 大爆発</dd>
-
-                                <dt style="color: var(--text-muted); font-weight: bold;">属性</dt>
-                                <dd style="margin: 0;">草</dd>
-
-                                <dt style="color: var(--text-muted); font-weight: bold;">雰囲気</dt>
-                                <dd style="margin: 0;">幸せを感じる、強い愛の感情、全力でぶつける</dd>
-
-                                <dt style="color: var(--text-muted); font-weight: bold;">感覚</dt>
-                                <dd style="margin: 0;">爽快さと勢いのある重さ</dd>
-
-                                <dt style="color: var(--text-muted); font-weight: bold;">スタイル</dt>
-                                <dd style="margin: 0;">セミリアル、スタレのキュレネ、まどドラ</dd>
-                            </dl>
-                        </div>
-
-                        <!-- Elements -->
-                        <div style="background: var(--bg-tertiary); padding: 30px; border-radius: 8px;">
-                            <h4
-                                style="color: var(--accent-cyan); margin-bottom: 15px; font-size: 1.1rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px;">
-                                構成要素（幸せ要素）</h4>
-                            <ul
-                                style="list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 10px;">
-                                <li
-                                    style="background: rgba(247, 79, 245, 0.1); padding: 5px 15px; border-radius: 20px; border: 1px solid #F74FF5; color: #F74FF5;">
-                                    ハート</li>
-                                <li
-                                    style="background: rgba(136, 247, 79, 0.1); padding: 5px 15px; border-radius: 20px; border: 1px solid #88F74F; color: #88F74F;">
-                                    四つ葉</li>
-                                <li
-                                    style="background: rgba(247, 212, 79, 0.1); padding: 5px 15px; border-radius: 20px; border: 1px solid #F7D44F; color: #F7D44F;">
-                                    黄色</li>
-                                <li
-                                    style="background: rgba(250, 150, 235, 0.1); padding: 5px 15px; border-radius: 20px; border: 1px solid #FA96EB; color: #FA96EB;">
-                                    ピンク</li>
-                            </ul>
-                            <ul
-                                style="margin-top: 15px; padding-left: 20px; color: var(--text-secondary); line-height: 1.6;">
-                                <li>ハートのクリスタル</li>
-                                <li>ビームの発射口周辺のオーラをハート型に</li>
-                                <li>ビームのコアに心臓のような動き</li>
-                                <li>白黒でディストーション（歪んだ愛を表現）</li>
-                                <li>ハート型の爆発の煙</li>
-                            </ul>
-                        </div>
-
-                        <!-- Features -->
-                        <div style="background: var(--bg-tertiary); padding: 30px; border-radius: 8px;">
-                            <h4
-                                style="color: var(--accent-cyan); margin-bottom: 15px; font-size: 1.1rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px;">
-                                特徴</h4>
-                            <p style="color: var(--text-secondary); line-height: 1.6;">
-                                必殺技級の大規模エフェクト。でかい爆発。<br>
-                                爆発の瞬間に白黒演出を入れる。<br>
-                                大きい光が回転。<br>
-                                ビーム・チャージの段階強化。<br>
-                                ハートのクリスタルが最後粉々になりキラキラ舞い落ちる。
-                            </p>
-                        </div>
-
-                        <!-- Color Palette -->
-                        <div style="background: var(--bg-tertiary); padding: 30px; border-radius: 8px;">
-                            <h4
-                                style="color: var(--accent-cyan); margin-bottom: 15px; font-size: 1.1rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px;">
-                                カラーパレット</h4>
-                            <div style="display: flex; flex-wrap: wrap; gap: 15px;">
-                                <!-- Main -->
-                                <div style="text-align: center;">
-                                    <div
-                                        style="width: 60px; height: 60px; background: #F74FF5; border-radius: 50%; border: 2px solid white; margin-bottom: 5px; box-shadow: 0 0 10px rgba(247, 79, 245, 0.5);">
-                                    </div>
-                                    <span style="font-size: 0.75rem; color: var(--text-muted);">Main<br>#F74FF5</span>
-                                </div>
-                                <!-- Dark -->
-                                <div style="text-align: center;">
-                                    <div
-                                        style="width: 60px; height: 60px; background: #672166; border-radius: 50%; border: 2px solid rgba(255,255,255,0.2); margin-bottom: 5px;">
-                                    </div>
-                                    <span style="font-size: 0.75rem; color: var(--text-muted);">Dark<br>#672166</span>
-                                </div>
-                                <!-- Highlight -->
-                                <div style="text-align: center;">
-                                    <div
-                                        style="width: 60px; height: 60px; background: #FFD1E8; border-radius: 50%; border: 2px solid white; margin-bottom: 5px;">
-                                    </div>
-                                    <span
-                                        style="font-size: 0.75rem; color: var(--text-muted);">Highlight<br>#FFD1E8</span>
-                                </div>
-                                <!-- Middle -->
-                                <div style="text-align: center;">
-                                    <div
-                                        style="width: 60px; height: 60px; background: #FA96EB; border-radius: 50%; border: 2px solid white; margin-bottom: 5px;">
-                                    </div>
-                                    <span style="font-size: 0.75rem; color: var(--text-muted);">Middle<br>#FA96EB</span>
-                                </div>
-                                <!-- Accent Yellow -->
-                                <div style="text-align: center;">
-                                    <div
-                                        style="width: 60px; height: 60px; background: linear-gradient(135deg, #F7D44F 50%, #ECE1AF 50%); border-radius: 50%; border: 2px solid white; margin-bottom: 5px;">
-                                    </div>
-                                    <span style="font-size: 0.75rem; color: var(--text-muted);">Yellow<br>Accent</span>
-                                </div>
-                                <!-- Accent Blue -->
-                                <div style="text-align: center;">
-                                    <div
-                                        style="width: 60px; height: 60px; background: #70D9FF; border-radius: 50%; border: 2px solid white; margin-bottom: 5px;">
-                                    </div>
-                                    <span style="font-size: 0.75rem; color: var(--text-muted);">Blue<br>Accent</span>
-                                </div>
-                                <!-- Accent Green -->
-                                <div style="text-align: center;">
-                                    <div
-                                        style="width: 60px; height: 60px; background: linear-gradient(135deg, #88F74F 33%, #7DA26A 33%, #7DA26A 66%, #CCF74F 66%); border-radius: 50%; border: 2px solid white; margin-bottom: 5px;">
-                                    </div>
-                                    <span style="font-size: 0.75rem; color: var(--text-muted);">Green<br>Accent</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Structure (Ki-Sho-Ten-Ketsu) -->
-                        <div style="background: var(--bg-tertiary); padding: 30px; border-radius: 8px;">
-                            <h4
-                                style="color: var(--accent-cyan); margin-bottom: 20px; font-size: 1.1rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px;">
-                                構成案（起承転結）</h4>
-
-                            <!-- Ki -->
+                            <!-- Back Button (Breadcrumb style) -->
                             <div style="margin-bottom: 30px;">
-                                <h5
-                                    style="color: var(--text-primary); font-size: 1rem; margin-bottom: 10px; border-left: 3px solid var(--accent-cyan); padding-left: 10px;">
-                                    起 (Introduction) <span
-                                        style="font-size: 0.8rem; color: var(--text-muted); font-weight: normal; margin-left: 10px;">Max
-                                        2秒</span>
-                                </h5>
-                                <ul
-                                    style="color: var(--text-secondary); line-height: 1.6; margin-bottom: 15px; padding-left: 20px;">
-                                    <li>中心に向かってエネルギーを集める</li>
-                                    <li>コア部分にハートがスケール0から大きくなっていく</li>
-                                    <li>コアを覆う球が出現。最初輪郭はなくオーラがだんだん形になって球になる</li>
-                                    <li>球は草属性を感じられるような模様、ラインを走らせる</li>
-                                    <li>球の周りもラインを走らせる</li>
-                                    <li>コアのハートが出てき始めるタイミングで下側から2点がハートのリングを作っていく</li>
-                                    <li>中心のコアはビーム発射直前に一瞬小さくなる</li>
-                                </ul>
-                                <div style="display: flex; gap: 15px; flex-wrap: nowrap; overflow-x: auto;">
-                                    <img src="images/structure_1.jpg"
-                                        style="max-width: 48%; height: auto; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1); flex-shrink: 0;">
-                                    <img src="images/structure_2.jpg"
-                                        style="max-width: 48%; height: auto; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1); flex-shrink: 0;">
-                                </div>
+                                <a href="works_vfx.html"
+                                    style="color: var(--text-muted); text-decoration: none; font-family: var(--font-display); font-size: 0.9rem;">
+                                    &lt; BACK TO GAME EFFECTS LIST
+                                </a>
                             </div>
 
-                            <!-- Sho -->
-                            <div style="margin-bottom: 30px;">
-                                <h5
-                                    style="color: var(--text-primary); font-size: 1rem; margin-bottom: 10px; border-left: 3px solid var(--accent-cyan); padding-left: 10px;">
-                                    承 (Development)
-                                </h5>
-                                <ul style="color: var(--text-secondary); line-height: 1.6; padding-left: 20px;">
-                                    <li>後方に風</li>
-                                    <li>一直線に光線を発射。発射する瞬間に強い光（溜が終わったことを示す）</li>
-                                    <li>発射口にはハート型のリング</li>
-                                    <li>太いビーム（発射口の先端は太く、少し透明にしてなじませる）</li>
-                                    <li>コアのハートを小刻みに拡縮。それに合わせてビームも小さく揺らす</li>
-                                    <li>ビーム構成：中心に強い1本、太いメイン色1本、暗めの1本、オーラ入り1本、ねじった1本</li>
-                                    <li>発射口から余分なエネルギーとして粒子を溢れさせて飛ばす</li>
-                                    <li>地面に光の反射を入れる（地面は削らない）</li>
-                                    <li>人が足元にオーラ</li>
-                                </ul>
-                                <div style="display: flex; gap: 15px; flex-wrap: nowrap; overflow-x: auto;">
-                                    <img src="images/structure_3.jpg"
-                                        style="max-width: 45%; height: auto; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1); flex-shrink: 0;">
-                                    <img src="images/structure_4.jpg"
-                                        style="max-width: 45%; height: auto; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1); flex-shrink: 0;">
-                                    <img src="images/structure_5.jpg"
-                                        style="max-width: 45%; height: auto; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1); flex-shrink: 0;">
-                                </div>
-                            </div>
+                            <!-- Title -->
+                            <h1
+                                style="font-family: var(--font-display); font-size: 2.5rem; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 2px;">
+                                Cute Beam & Explosion</h1>
+                            <p
+                                style="color: var(--accent-cyan); font-family: var(--font-display); font-size: 1.1rem; margin-bottom: 40px;">
+                                "幸せ×魔法少女×爽快感" ビーム&爆発エフェクト</p>
 
-                            <!-- Ten -->
-                            <div style="margin-bottom: 30px;">
-                                <h5
-                                    style="color: var(--text-primary); font-size: 1rem; margin-bottom: 10px; border-left: 3px solid var(--accent-cyan); padding-left: 10px;">
-                                    転 (Twist/Climax)
-                                </h5>
-                                <ul style="color: var(--text-secondary); line-height: 1.6; padding-left: 20px;">
-                                    <li>画角を変える</li>
-                                    <li>キャラの後方で爆発（キャラはカメラ目線）</li>
-                                    <li>当たった場所から飛び散る粒子、ハートを4つ出してクローバー型に（威力演出）</li>
-                                    <li>画面の1/3くらいのビーム</li>
-                                    <li>爆発直前：ハート→十字フラッシュ（白黒演出）→光の線</li>
-                                    <li>巨大な半球の爆発。模様は上にスクロール</li>
-                                    <li>地面に沿うように煙が広がる。2秒ほどかけて画面全体を白く覆う</li>
-                                    <li>カメラ揺れ</li>
-                                    <li>煙→発光→爆発（たくさんの火花、粒子、ハートが吹雪のように飛ぶ）</li>
-                                    <li>爆発の周りは円のリング。全体にミストのような煙</li>
-                                    <li>爆発が瞬時に大きくなった後徐々に広がる → ホワイトアウト</li>
-                                </ul>
-                                <div style="display: flex; gap: 15px; flex-wrap: nowrap; overflow-x: auto;">
-                                    <img src="images/structure_ten_1.jpg"
-                                        style="max-width: 30%; height: auto; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1); flex-shrink: 0;">
-                                    <img src="images/structure_ten_2.jpg"
-                                        style="max-width: 30%; height: auto; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1); flex-shrink: 0;">
-                                    <img src="images/structure_ten_3.jpg"
-                                        style="max-width: 30%; height: auto; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1); flex-shrink: 0;">
-                                    <img src="images/structure_ten_4.jpg"
-                                        style="max-width: 30%; height: auto; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1); flex-shrink: 0;">
-                                    <img src="images/structure_ten_5.jpg"
-                                        style="max-width: 30%; height: auto; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1); flex-shrink: 0;">
-                                </div>
-                            </div>
-
-                            <!-- Ketsu -->
-                            <div>
-                                <h5
-                                    style="color: var(--text-primary); font-size: 1rem; margin-bottom: 10px; border-left: 3px solid var(--accent-cyan); padding-left: 10px;">
-                                    結 (Conclusion)
-                                </h5>
-                                <ul style="color: var(--text-secondary); line-height: 1.6; padding-left: 20px;">
-                                    <li>無数のキラキラが漂い、徐々に消えていく（六角形&ひし形）</li>
-                                    <li>地面付近の煙が上昇しハートの形ができる</li>
-                                    <li>全体に漂っていたミストは左右にはける（ゆっくり）</li>
-                                    <li>地面は削り焦げた跡</li>
-                                </ul>
-                                <div style="display: flex; gap: 15px; flex-wrap: nowrap; overflow-x: auto;">
-                                    <img src="images/structure_ketsu_1.jpg"
-                                        style="max-width: 48%; height: auto; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1); flex-shrink: 0;">
-                                    <img src="images/structure_ketsu_2.jpg"
-                                        style="max-width: 48%; height: auto; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1); flex-shrink: 0;">
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-                <div id="reference" style="margin-bottom: 80px; scroll-margin-top: 100px;">
-                    <h3
-                        style="font-family: var(--font-display); font-size: 1.4rem; color: var(--text-primary); margin-bottom: 20px; border-left: 4px solid var(--accent-cyan); padding-left: 15px;">
-                        REFERENCE <span
-                            style="font-size: 0.9rem; color: var(--text-muted); margin-left: 10px;">リファレンス</span>
-                    </h3>
-                    <div style="background: var(--bg-tertiary); padding: 20px; border-radius: 8px; text-align: center;">
-                        <img src="images/ref_sheet.png" alt="Reference Sheet"
-                            style="max-width: 100%; height: auto; border-radius: 4px;">
-                        <p style="color: var(--text-muted); font-size: 0.8rem; margin-top: 10px;">収集したリファレンス画像</p>
-                    </div>
-                </div>
-
-                <div id="storyboard" style="margin-bottom: 80px; scroll-margin-top: 100px;">
-                    <h3
-                        style="font-family: var(--font-display); font-size: 1.4rem; color: var(--text-primary); margin-bottom: 20px; border-left: 4px solid var(--accent-cyan); padding-left: 15px;">
-                        STORYBOARD <span
-                            style="font-size: 0.9rem; color: var(--text-muted); margin-left: 10px;">絵コンテ</span>
-                    </h3>
-                    <div style="background: var(--bg-tertiary); padding: 20px; border-radius: 8px; text-align: center;">
-                        <img src="images/storyboard.png" alt="Storyboard"
-                            style="max-width: 100%; height: auto; border-radius: 4px;">
-                        <p style="color: var(--text-muted); font-size: 0.8rem; margin-top: 10px;">制作した絵コンテ</p>
-                    </div>
-                </div>
-
-                <div id="rough-design" style="margin-bottom: 80px; scroll-margin-top: 100px;">
-                    <h3
-                        style="font-family: var(--font-display); font-size: 1.4rem; color: var(--text-primary); margin-bottom: 20px; border-left: 4px solid var(--accent-cyan); padding-left: 15px;">
-                        ROUGH DESIGN <span
-                            style="font-size: 0.9rem; color: var(--text-muted); margin-left: 10px;">ラフデザイン</span>
-                    </h3>
-                    <div style="background: var(--bg-tertiary); padding: 30px; border-radius: 8px;">
-                        <p style="color: var(--text-secondary); margin-bottom: 20px; line-height: 1.6;">
-                            エフェクト制作を進める中でどんな要素を新たに追加するかを考えるとき、まずはスクリーンショットを撮りその画像の上からPhotoshopなどで簡単にデザインを行っています。
-                        </p>
-                        <div style="display: flex; flex-wrap: wrap; gap: 15px;">
-                            <img src="images/rough_design_1.png"
-                                style="width: calc(50% - 8px); height: auto; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1);">
-                            <img src="images/rough_design_inserted.png"
-                                style="width: calc(50% - 8px); height: auto; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1);">
-                            <img src="images/rough_design_row2_col1.jpg"
-                                style="width: calc(50% - 8px); height: auto; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1);">
-                            <img src="images/rough_design_row2_col2.jpg"
-                                style="width: calc(50% - 8px); height: auto; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1);">
-                            <img src="images/rough_design_row3_col1.jpg"
-                                style="width: calc(50% - 8px); height: auto; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1);">
-                            <img src="images/rough_design_6.png"
-                                style="width: calc(50% - 8px); height: auto; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1);">
-                        </div>
-                    </div>
-                </div>
-
-                <div id="mesh" style="margin-bottom: 80px; scroll-margin-top: 100px;">
-                    <h2
-                        style="font-family: var(--font-display); font-size: 1.5rem; color: var(--accent-cyan); margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
-                        <span style="width: 20px; height: 2px; background: var(--accent-cyan);"></span>
-                        MESH
-                    </h2>
-                    <div
-                        style="background: rgba(255, 255, 255, 0.03); padding: 20px; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.05);">
-                        <p style="margin-bottom: 20px;">
-                            <span style="
-                                display: inline-flex;
-                                align-items: center;
-                                gap: 10px;
-                                padding: 8px 16px;
-                                background: linear-gradient(90deg, rgba(0, 240, 255, 0.1), transparent);
-                                border-left: 3px solid var(--accent-cyan);
-                                color: var(--accent-cyan);
-                                font-family: var(--font-display);
-                                font-weight: 700;
-                                letter-spacing: 0.1em;
-                            ">
-                                <span style="font-size: 0.9em; opacity: 0.8;">使用ツール</span>
-                                <span
-                                    style="font-size: 1.2em; text-shadow: 0 0 10px rgba(0, 240, 255, 0.5);">MAYA</span>
-                            </span>
-                        </p>
-                        <img src="images/mesh_1.png"
-                            style="width: 100%; height: auto; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1);">
-                    </div>
-                </div>
-
-                <div id="texture" style="margin-bottom: 80px; scroll-margin-top: 100px;">
-                    <h2
-                        style="font-family: var(--font-display); font-size: 1.5rem; color: var(--accent-cyan); margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
-                        <span style="width: 20px; height: 2px; background: var(--accent-cyan);"></span>
-                        TEXTURE
-                    </h2>
-                    <div
-                        style="background: rgba(255, 255, 255, 0.03); padding: 20px; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.05);">
-                        <p style="margin-bottom: 20px;">
-                            <span style="
-                                display: inline-flex;
-                                align-items: center;
-                                gap: 10px;
-                                padding: 8px 16px;
-                                background: linear-gradient(90deg, rgba(0, 240, 255, 0.1), transparent);
-                                border-left: 3px solid var(--accent-cyan);
-                                color: var(--accent-cyan);
-                                font-family: var(--font-display);
-                                font-weight: 700;
-                                letter-spacing: 0.1em;
-                            ">
-                                <span style="font-size: 0.9em; opacity: 0.8;">使用ツール</span>
-                                <span style="font-size: 1.1em; text-shadow: 0 0 10px rgba(0, 240, 255, 0.5);">Photoshop,
-                                    AfterEffects, Substance 3D Designer, EmberGen</span>
-                            </span>
-                        </p>
-                        <p style="color: var(--text-secondary); margin-bottom: 10px; line-height: 1.6;">
-                            自作したテクスチャを下に載せています。
-                        </p>
-                        <p style="color: var(--text-secondary); margin-bottom: 10px; line-height: 1.6;">
-                            ノイズテクスチャのシームレス化処理にPhotoshopの生成AIを使用しています。
-                        </p>
-                        <p style="color: var(--text-secondary); margin-bottom: 20px; line-height: 1.6;">
-                            自作のテクスチャの他にNOVAシェーダーサンプルプロジェクトのテクスチャも使用しています。
-                        </p>
-                        <img src="images/texture_1.png"
-                            style="width: 100%; height: auto; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1);">
-                    </div>
-                </div>
-
-                <div id="points" style="margin-bottom: 80px; scroll-margin-top: 100px;">
-                    <h2
-                        style="font-family: var(--font-display); font-size: 1.5rem; color: var(--accent-cyan); margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
-                        <span style="width: 20px; height: 2px; background: var(--accent-cyan);"></span>
-                        POINTS
-                        <span
-                            style="font-size: 0.8rem; color: var(--text-secondary); font-weight: normal; margin-left: 10px;">こだわり・工夫点</span>
-                    </h2>
-                    <div
-                        style="background: rgba(255, 255, 255, 0.03); padding: 20px; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.05);">
-                        <h3
-                            style="font-family: var(--font-display); font-size: 1.3rem; color: var(--text-primary); margin-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px;">
-                            ハートのリング
-                        </h3>
-
-                        <div style="margin-bottom: 20px;">
-                            <strong
-                                style="color: var(--accent-cyan); display: block; margin-bottom: 5px;">やりたかったこと：</strong>
-                            <p style="color: var(--text-secondary); line-height: 1.6;">
-                                徐々にハートが下から形どられるようにしたい
-                            </p>
-                        </div>
-
-                        <p style="color: var(--text-secondary); margin-bottom: 20px; line-height: 1.6;">
-                            初め、<strong>画像1</strong>のようなハートのメッシュにNOVAシェーダーのInverseをオンにすることで輪郭のみ表示させるようにして上下を白と黒で分けたテクスチャをスクロールさせたが、ハートの凹んでいる部分が最後に見えるようにならなかった。
-                        </p>
-
-                        <p style="color: var(--text-secondary); margin-bottom: 30px; line-height: 1.6;">
-                            そのため<strong>画像2</strong>のリング状のハートを作ってUVスクロールさせることで下からハートが凹んだ部分に向かって現れる表現が可能となった。
-                        </p>
-
-                        <div style="display: flex; gap: 15px; flex-wrap: wrap;">
-                            <div style="flex: 1; min-width: 300px; display: flex; flex-direction: column;">
-                                <div
-                                    style="flex: 1; display: flex; align-items: center; justify-content: center; margin-bottom: 5px;">
-                                    <img src="images/tips_heart_mesh.png"
-                                        style="max-width: 100%; height: auto; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1);">
-                                </div>
-                                <p
-                                    style="color: var(--text-muted); font-size: 0.8rem; text-align: center; margin-top: auto;">
-                                    画像1</p>
-                            </div>
-                            <div style="flex: 1; min-width: 300px; display: flex; flex-direction: column;">
-                                <div
-                                    style="flex: 1; display: flex; align-items: center; justify-content: center; margin-bottom: 5px;">
-                                    <img src="images/tips_heart_ring.png"
-                                        style="max-width: 100%; height: auto; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1);">
-                                </div>
-                                <p
-                                    style="color: var(--text-muted); font-size: 0.8rem; text-align: center; margin-top: auto;">
-                                    画像2</p>
-                            </div>
-                        </div>
-
-                        <!-- Divider -->
-                        <div style="height: 1px; background: rgba(255,255,255,0.1); margin: 40px 0;"></div>
-
-                        <h3
-                            style="font-family: var(--font-display); font-size: 1.3rem; color: var(--text-primary); margin-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px;">
-                            ビーム直撃時に出現する四つ葉を模したエフェクト
-                        </h3>
-
-                        <div style="margin-bottom: 20px;">
-                            <strong
-                                style="color: var(--accent-cyan); display: block; margin-bottom: 5px;">工夫したこと：</strong>
-                            <p style="color: var(--text-secondary); line-height: 1.6;">
-                                同じ画を続けない
-                            </p>
-                        </div>
-
-                        <p style="color: var(--text-secondary); margin-bottom: 20px; line-height: 1.6;">
-                            ビームを発射しロボットのキャラクターにビームが直撃しているカットに切り替わるが、当初はこのカットの前半約1.5秒はビームが直撃している様子の同じ画が続いていた。しかし、この短い間でも同じ画が続くと見ている人に飽きを感じさせてしまうと思い、ビームの先端に現れるハートを4つ並べ四葉を模したピンク色のエフェクトを徐々に大きくすることで、エネルギーの集約を表現しつつ、同じ画を作らず飽きが来ない体験設計をする工夫を行った。
-                        </p>
-
-                        <div style="display: flex; gap: 15px; flex-wrap: wrap; margin-bottom: 40px;">
-                            <div style="flex: 1; min-width: 300px;">
-                                <img src="images/tips_clover_1.png"
-                                    style="width: 100%; height: auto; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1);">
-                            </div>
-                            <div style="flex: 1; min-width: 300px;">
-                                <img src="images/tips_clover_2.png"
-                                    style="width: 100%; height: auto; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1);">
-                            </div>
-                        </div>
-
-                        <!-- Divider -->
-                        <div style="height: 1px; background: rgba(255,255,255,0.1); margin: 40px 0;"></div>
-
-                        <h3
-                            style="font-family: var(--font-display); font-size: 1.3rem; color: var(--text-primary); margin-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px;">
-                            大きなヒットエフェクト
-                        </h3>
-
-                        <div style="margin-bottom: 20px;">
-                            <strong
-                                style="color: var(--accent-cyan); display: block; margin-bottom: 5px;">工夫したこと：</strong>
-                            <p style="color: var(--text-secondary); line-height: 1.6;">
-                                メッシュ感をなくす
-                            </p>
-                        </div>
-
-                        <p style="color: var(--text-secondary); margin-bottom: 20px; line-height: 1.6;">
-                            ビームが持続的に敵に当たるためヒット部分にヒットの連続を表現したエフェクトを制作した。
-                        </p>
-
-                        <p style="color: var(--text-secondary); line-height: 1.6;">
-                            Render Modeをメッシュに設定しパーティクルを1つだけ出してUVスクロールさせるのではなくRate over Timeで複数パーティクルを放出し、寿命を短く、Size over
-                            lifetimeで小⇒大になるようにグラフを作り高速でパーティクルを出現させることでメッシュ感を無くすことに成功。
-                        </p>
-                        <div style="margin-top: 30px; display: flex; gap: 15px; flex-wrap: wrap; align-items: start;">
-                            <div style="flex: 1; min-width: 300px;">
-                                <img src="images/tips_big_hit.png"
-                                    style="width: 100%; height: auto; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1);">
-                            </div>
-                            <div style="flex: 1; min-width: 300px; display: flex; flex-direction: column; gap: 15px;">
-                                <img src="images/tips_big_hit_sub1.png"
-                                    style="width: 100%; height: auto; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1);">
-                                <img src="images/tips_big_hit_sub2.png"
-                                    style="width: 100%; height: auto; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1);">
-                            </div>
-                        </div>
-
-                        <!-- Divider -->
-                        <div style="height: 1px; background: rgba(255,255,255,0.1); margin: 40px 0;"></div>
-
-                        <h3
-                            style="font-family: var(--font-display); font-size: 1.3rem; color: var(--text-primary); margin-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px;">
-                            一瞬の白黒表現
-                        </h3>
-
-                        <div style="margin-bottom: 20px;">
-                            <strong
-                                style="color: var(--accent-cyan); display: block; margin-bottom: 5px;">やりたかったこと：</strong>
-                            <p style="color: var(--text-secondary); line-height: 1.6;">
-                                爆発の勢いをより感じてもらう表現
-                            </p>
-                        </div>
-
-                        <p style="color: var(--text-secondary); line-height: 1.6;">
-                            自分もプレイしている『崩壊：スターレイル』によく見られる爆発寸前に入る白黒の描写を自身の作品にも取り入れた。爆発の勢いを引き立たせるため直前に一瞬入れることで見ている人にエネルギーの大きさを感じてもらう意図がある。
-                        </p>
-
-                        <div style="margin-top: 30px; display: flex; gap: 15px; flex-wrap: wrap; align-items: start;">
-                            <div style="flex: 1; min-width: 300px;">
-                                <img src="images/tips_bw_3.png"
-                                    style="width: 100%; height: auto; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1); margin-bottom: 10px;">
-                                <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6;">
-                                    Post-processingのChannel MixerとLift Gamma Gainを用いて白黒演出を行った。Lift Gamma
-                                    Gainは白と黒のコントラストを出しながら極端な白飛び、黒潰れが起きないように値を調整した。
-                                </p>
-                            </div>
-                            <div style="flex: 1; min-width: 300px; display: flex; flex-direction: column; gap: 15px;">
-                                <img src="images/tips_bw_1.png"
-                                    style="width: 100%; height: auto; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1);">
-                                <img src="images/tips_bw_2.png"
-                                    style="width: 100%; height: auto; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1);">
-                            </div>
-                        </div>
-
-                        <!-- Separator -->
-                        <div style="width: 100%; height: 1px; background: rgba(255,255,255,0.1); margin: 60px 0;"></div>
-
-                        <!-- Smoke & Ground Texture -->
-                        <h3
-                            style="font-family: var(--font-display); font-size: 1.3rem; color: var(--text-primary); margin-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px;">
-                            煙・地面の質感表現
-                        </h3>
-
-                        <div style="margin-bottom: 20px;">
-                            <strong
-                                style="color: var(--accent-cyan); display: block; margin-bottom: 5px;">やりたかったこと：</strong>
-                            <p style="color: var(--text-secondary); line-height: 1.6;">
-                                煙や地面の割れといった自然物、物理的な要素はリアルなものに近づけること
-                            </p>
-                        </div>
-
-                        <p style="color: var(--text-secondary); line-height: 1.6; margin-bottom: 20px;">
-                            手描きのテクスチャでは自分が表現したい質感を作ることが難しいと判断しこれまで触れていなかったツールにも積極的にアプローチし表現を追求した。<br>
-                            煙はEmberGenでシミュレーションしたものを連番の画像で書き出し、一枚のテクスチャシートにして使用。<br>
-                            地面の割れはSubstance 3D Designerを使用し、プロシージャルなテクスチャ作成を行った。
-                        </p>
-
-                        <div style="margin-top: 30px;">
-                            <strong
-                                style="color: var(--text-primary); display: block; margin-bottom: 15px;">煙のテクスチャ作成</strong>
-                            <div style="display: flex; gap: 15px; flex-wrap: wrap; align-items: start;">
-                                <div style="flex: 1.777; min-width: 300px;">
-                                    <img src="images/tips_smoke_1.png"
-                                        style="width: 100%; height: auto; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1);">
-                                </div>
-                                <div style="flex: 1; min-width: 168px;">
-                                    <img src="images/tips_smoke_2.png"
-                                        style="width: 100%; height: auto; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1);">
-                                </div>
-                            </div>
-
-                            <!-- Sort Mode Explanation -->
+                            <!-- Main Visual -->
                             <div
-                                style="display: flex; gap: 20px; align-items: center; margin-top: 15px; flex-wrap: wrap;">
-                                <div style="flex: 1; min-width: 300px;">
-                                    <img src="images/tips_smoke_setting.png"
-                                        style="width: 100%; height: auto; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1);">
-                                </div>
-                                <div style="flex: 1; min-width: 300px;">
-                                    <p style="color: var(--text-secondary); line-height: 1.6;">
-                                        Sort ModeをBy
-                                        Distanceにすることで手前側の煙の描画を優先しカメラから距離が離れた煙は手前の煙に隠れるようにして見た目の整合性を取る工夫も行っている。
+                                style="width: 100%; aspect-ratio: 16/9; background: #000; margin-bottom: 40px; border: 1px solid var(--bg-tertiary); overflow: hidden; position: relative;">
+                                <!-- Placeholder for video/image -->
+                                <video src="videos/cute_beam_0216.mp4" controls autoplay loop muted playsinline
+                                    style="width: 100%; height: 100%; object-fit: cover;">
+                                    Your browser does not support the video tag.
+                                </video>
+                            </div>
+
+                            <!-- Content Grid -->
+                            <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 40px;">
+
+                                <!-- Description -->
+                                <div class="detail-description">
+                                    <h3
+                                        style="font-family: var(--font-display); font-size: 1.2rem; color: var(--accent-purple); margin-bottom: 20px;">
+                                        PROJECT OVERVIEW</h3>
+                                    <p style="line-height: 1.8; color: var(--text-secondary); margin-bottom: 20px;">
+                                        <span style="color: #FFEB3B; font-weight: bold;">幸せ</span>×<span
+                                            style="color: #FF69B4; font-weight: bold;">魔法少女</span>×<span
+                                            style="color: #76FF03; font-weight: bold;">爽快感</span>をコンセプトに制作したオリジナルエフェクト作品です。<br>
+                                        <span
+                                            style="color: #FFEB3B; font-weight: bold;">幸せ</span>の要素としてハートをたくさん詰め込み、色はアクセントに黄色を使いました。ビームの先端ではハートを4つ並べ四葉のクローバーのような見た目にした点にこだわりました。<br>
+                                        <span
+                                            style="color: #FF69B4; font-weight: bold;">魔法少女</span>の要素として彩度の高いピンク色をベースカラーに使用しました。ピンク色に幅を持たせることで飽きが来ないような見た目になるように工夫しています。<br>
+                                        <span
+                                            style="color: #76FF03; font-weight: bold;">爽快感</span>を得てもらうために爆発の直前に一瞬白黒のポストエフェクトを用いたり爆発を勢いよく広げるようにしました。
                                     </p>
                                 </div>
+
+                                <!-- Info / Tech Stack -->
+                                <div class="detail-info"
+                                    style="background: var(--bg-tertiary); padding: 30px; border-radius: 8px; height: fit-content;">
+                                    <h3
+                                        style="font-family: var(--font-display); font-size: 1.1rem; margin-bottom: 20px;">
+                                        DETAILS</h3>
+
+                                    <div style="margin-bottom: 20px;">
+                                        <span
+                                            style="display: block; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 5px;">ROLE</span>
+                                        <span style="font-size: 1rem;">Game Effect</span>
+                                    </div>
+
+                                    <div style="margin-bottom: 20px;">
+                                        <span
+                                            style="display: block; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 5px;">TOOLS</span>
+                                        <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                                            <span
+                                                style="padding: 4px 10px; background: var(--bg-primary); border-radius: 4px; font-size: 0.85rem; color: var(--accent-cyan);">Unity</span>
+                                            <span
+                                                style="padding: 4px 10px; background: var(--bg-primary); border-radius: 4px; font-size: 0.85rem; color: var(--accent-cyan);">NOVA
+                                                shader</span>
+                                            <span
+                                                style="padding: 4px 10px; background: var(--bg-primary); border-radius: 4px; font-size: 0.85rem; color: var(--accent-cyan);">Photoshop</span>
+                                            <span
+                                                style="padding: 4px 10px; background: var(--bg-primary); border-radius: 4px; font-size: 0.85rem; color: var(--accent-cyan);">After
+                                                Effects</span>
+                                            <span
+                                                style="padding: 4px 10px; background: var(--bg-primary); border-radius: 4px; font-size: 0.85rem; color: var(--accent-cyan);">Substance
+                                                3D Designer</span>
+                                            <span
+                                                style="padding: 4px 10px; background: var(--bg-primary); border-radius: 4px; font-size: 0.85rem; color: var(--accent-cyan);">EmberGen</span>
+                                        </div>
+                                    </div>
+                                    <div style="margin-bottom: 0;">
+                                        <span
+                                            style="display: block; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 5px;">CREATION
+                                            TIME</span>
+                                        <span style="font-size: 1rem;">約97時間</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Process Section -->
+                        <div class="process-section" style="margin-top: 100px;">
+                            <h2
+                                style="font-family: var(--font-display); font-size: 1.8rem; text-align: center; margin-bottom: 50px; color: var(--text-primary); letter-spacing: 0.1em;">
+                                PROCESS <span
+                                    style="display: block; font-size: 0.9rem; color: var(--accent-cyan); margin-top: 10px; font-weight: normal; letter-spacing: 0.05em;">制作過程</span>
+                            </h2>
+
+                            <!-- Table of Contents -->
+                            <div class="process-toc"
+                                style="background: var(--bg-tertiary); padding: 40px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.05); margin-bottom: 80px; position: relative; overflow: hidden;">
+                                <!-- Glow effect -->
+                                <div
+                                    style="position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: var(--accent-gradient); opacity: 0.5;">
+                                </div>
+
+                                <h3
+                                    style="font-family: var(--font-display); font-size: 1.2rem; text-align: center; margin-bottom: 30px; color: var(--text-primary); letter-spacing: 0.1em;">
+                                    目次</h3>
+
+                                <ul
+                                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; list-style: none; padding: 0; margin: 0; max-width: 900px; margin-left: auto; margin-right: auto;">
+                                    <!-- Style for links defined inline for portability -->
+
+                                    <li><a href="#workflow" class="process-toc-link"
+                                            style="display: block; padding: 12px 24px; background: var(--bg-primary); border: 1px solid var(--text-muted); color: var(--text-secondary); text-decoration: none; border-radius: 30px; transition: all 0.3s ease; font-family: var(--font-display); font-size: 0.9rem; text-align: center;"
+                                            onmouseover="this.style.borderColor='var(--accent-cyan)'; this.style.color='var(--accent-cyan)'; this.style.boxShadow='0 0 15px rgba(0, 240, 255, 0.2)';"
+                                            onmouseout="this.style.borderColor='var(--text-muted)'; this.style.color='var(--text-secondary)'; this.style.boxShadow='none';">Workflow</a>
+                                    </li>
+                                    <li><a href="#settings" class="process-toc-link"
+                                            style="display: block; padding: 12px 24px; background: var(--bg-primary); border: 1px solid var(--text-muted); color: var(--text-secondary); text-decoration: none; border-radius: 30px; transition: all 0.3s ease; font-family: var(--font-display); font-size: 0.9rem; text-align: center;"
+                                            onmouseover="this.style.borderColor='var(--accent-cyan)'; this.style.color='var(--accent-cyan)'; this.style.boxShadow='0 0 15px rgba(0, 240, 255, 0.2)';"
+                                            onmouseout="this.style.borderColor='var(--text-muted)'; this.style.color='var(--text-secondary)'; this.style.boxShadow='none';">Settings</a>
+                                    </li>
+                                    <li><a href="#reference" class="process-toc-link"
+                                            style="display: block; padding: 12px 24px; background: var(--bg-primary); border: 1px solid var(--text-muted); color: var(--text-secondary); text-decoration: none; border-radius: 30px; transition: all 0.3s ease; font-family: var(--font-display); font-size: 0.9rem; text-align: center;"
+                                            onmouseover="this.style.borderColor='var(--accent-cyan)'; this.style.color='var(--accent-cyan)'; this.style.boxShadow='0 0 15px rgba(0, 240, 255, 0.2)';"
+                                            onmouseout="this.style.borderColor='var(--text-muted)'; this.style.color='var(--text-secondary)'; this.style.boxShadow='none';">Reference</a>
+                                    </li>
+                                    <li><a href="#storyboard" class="process-toc-link"
+                                            style="display: block; padding: 12px 24px; background: var(--bg-primary); border: 1px solid var(--text-muted); color: var(--text-secondary); text-decoration: none; border-radius: 30px; transition: all 0.3s ease; font-family: var(--font-display); font-size: 0.9rem; text-align: center;"
+                                            onmouseover="this.style.borderColor='var(--accent-cyan)'; this.style.color='var(--accent-cyan)'; this.style.boxShadow='0 0 15px rgba(0, 240, 255, 0.2)';"
+                                            onmouseout="this.style.borderColor='var(--text-muted)'; this.style.color='var(--text-secondary)'; this.style.boxShadow='none';">Storyboard</a>
+                                    </li>
+                                    <li><a href="#rough-design" class="process-toc-link"
+                                            style="display: block; padding: 12px 24px; background: var(--bg-primary); border: 1px solid var(--text-muted); color: var(--text-secondary); text-decoration: none; border-radius: 30px; transition: all 0.3s ease; font-family: var(--font-display); font-size: 0.9rem; text-align: center;"
+                                            onmouseover="this.style.borderColor='var(--accent-cyan)'; this.style.color='var(--accent-cyan)'; this.style.boxShadow='0 0 15px rgba(0, 240, 255, 0.2)';"
+                                            onmouseout="this.style.borderColor='var(--text-muted)'; this.style.color='var(--text-secondary)'; this.style.boxShadow='none';">Rough
+                                            Design</a></li>
+                                    <li><a href="#mesh" class="process-toc-link"
+                                            style="display: block; padding: 12px 24px; background: var(--bg-primary); border: 1px solid var(--text-muted); color: var(--text-secondary); text-decoration: none; border-radius: 30px; transition: all 0.3s ease; font-family: var(--font-display); font-size: 0.9rem; text-align: center;"
+                                            onmouseover="this.style.borderColor='var(--accent-cyan)'; this.style.color='var(--accent-cyan)'; this.style.boxShadow='0 0 15px rgba(0, 240, 255, 0.2)';"
+                                            onmouseout="this.style.borderColor='var(--text-muted)'; this.style.color='var(--text-secondary)'; this.style.boxShadow='none';">Mesh</a>
+                                    </li>
+                                    <li><a href="#texture" class="process-toc-link"
+                                            style="display: block; padding: 12px 24px; background: var(--bg-primary); border: 1px solid var(--text-muted); color: var(--text-secondary); text-decoration: none; border-radius: 30px; transition: all 0.3s ease; font-family: var(--font-display); font-size: 0.9rem; text-align: center;"
+                                            onmouseover="this.style.borderColor='var(--accent-cyan)'; this.style.color='var(--accent-cyan)'; this.style.boxShadow='0 0 15px rgba(0, 240, 255, 0.2)';"
+                                            onmouseout="this.style.borderColor='var(--text-muted)'; this.style.color='var(--text-secondary)'; this.style.boxShadow='none';">Texture</a>
+                                    </li>
+                                    <li><a href="#points" class="process-toc-link"
+                                            style="display: block; padding: 12px 24px; background: var(--bg-primary); border: 1px solid var(--text-muted); color: var(--text-secondary); text-decoration: none; border-radius: 30px; transition: all 0.3s ease; font-family: var(--font-display); font-size: 0.9rem; text-align: center;"
+                                            onmouseover="this.style.borderColor='var(--accent-cyan)'; this.style.color='var(--accent-cyan)'; this.style.boxShadow='0 0 15px rgba(0, 240, 255, 0.2)';"
+                                            onmouseout="this.style.borderColor='var(--text-muted)'; this.style.color='var(--text-secondary)'; this.style.boxShadow='none';">Points</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <!-- Process Sections (Placeholders) -->
+
+
+                            <!-- Mermaid.js -->
+
+                        </div>
+
+
+                        <!-- Workflow Section (HTML/CSS Version) -->
+                        <div id="workflow" style="margin-bottom: 120px; scroll-margin-top: 100px;">
+                            <h3
+                                style="font-family: var(--font-display); font-size: 1.4rem; color: var(--text-primary); margin-bottom: 40px; border-left: 4px solid var(--accent-cyan); padding-left: 15px;">
+                                WORKFLOW <span
+                                    style="font-size: 0.9rem; color: var(--text-muted); margin-left: 10px;">ワークフロー</span>
+                            </h3>
+
+                            <div class="workflow-container">
+                                <!-- Step 1 -->
+                                <div class="workflow-step">
+                                    <div class="workflow-main-row">
+                                        <div class="workflow-box">設定決め</div>
+                                        <div class="workflow-arrow"></div>
+                                    </div>
+                                </div>
+                                <!-- Step 2 -->
+                                <div class="workflow-step">
+                                    <div class="workflow-main-row">
+                                        <div class="workflow-box">絵コンテ制作</div>
+                                        <div class="workflow-arrow"></div>
+                                    </div>
+                                </div>
+                                <!-- Step 3 -->
+                                <div class="workflow-step">
+                                    <div class="workflow-main-row">
+                                        <div class="workflow-box">リファレンス<br>集め</div>
+                                        <div class="workflow-arrow"></div>
+                                    </div>
+                                </div>
+                                <!-- Step 4 -->
+                                <div class="workflow-step">
+                                    <div class="workflow-main-row">
+                                        <div class="workflow-box">ラフデザイン</div>
+                                        <div class="workflow-arrow"></div>
+                                    </div>
+                                </div>
+                                <!-- Step 5 -->
+                                <div class="workflow-step">
+                                    <div class="workflow-main-row">
+                                        <div class="workflow-box">必要要素の<br>洗い出し</div>
+                                        <div class="workflow-arrow"></div>
+                                    </div>
+                                </div>
+                                <!-- Step 6 (Asset Search moved to Step 7) -->
+                                <div class="workflow-step">
+                                    <div class="workflow-main-row">
+                                        <div class="workflow-box">テクスチャ・<br>メッシュ制作</div>
+                                        <div class="workflow-arrow"></div>
+                                    </div>
+                                </div>
+                                <!-- Step 7 (Asset Search added here) -->
+                                <div class="workflow-step">
+                                    <div class="workflow-upper">
+                                        <div class="workflow-box workflow-box--upper">アセット探し</div>
+                                        <div class="workflow-arrow-down"></div>
+                                    </div>
+                                    <div class="workflow-main-row">
+                                        <div class="workflow-box">エフェクト作成</div>
+                                        <div class="workflow-arrow"></div>
+                                    </div>
+                                </div>
+                                <!-- Step 8 (Camera Work) -->
+                                <div class="workflow-step">
+                                    <div class="workflow-upper">
+                                        <div class="workflow-box workflow-box--upper">カメラワーク設定</div>
+                                        <div class="workflow-arrow-down"></div>
+                                    </div>
+                                    <div class="workflow-main-row">
+                                        <div class="workflow-box">配置</div>
+                                        <!-- Last arrow hidden -->
+                                    </div>
+                                </div>
+                            </div>
+
+                            <style>
+                                .workflow-container {
+                                    display: flex;
+                                    flex-wrap: nowrap;
+                                    justify-content: flex-start;
+                                    gap: 10px;
+                                    max-width: 100%;
+                                    overflow-x: auto;
+                                    padding-bottom: 20px;
+                                    padding-left: 20px;
+                                    padding-right: 20px;
+                                    align-items: flex-end;
+                                    /* Align main flow to bottom */
+                                }
+
+                                /* Hide scrollbar for Chrome, Safari and Opera */
+                                .workflow-container::-webkit-scrollbar {
+                                    height: 8px;
+                                }
+
+                                .workflow-container::-webkit-scrollbar-track {
+                                    background: var(--bg-tertiary);
+                                    border-radius: 4px;
+                                }
+
+                                .workflow-container::-webkit-scrollbar-thumb {
+                                    background: var(--text-muted);
+                                    border-radius: 4px;
+                                }
+
+                                .workflow-container::-webkit-scrollbar-thumb:hover {
+                                    background: var(--accent-cyan);
+                                }
+
+                                .workflow-step {
+                                    display: flex;
+                                    flex-direction: column;
+                                    align-items: center;
+                                    gap: 0;
+                                    /* Changed from 10px to 0 for tighter arrows */
+                                    flex-shrink: 0;
+                                }
+
+                                .workflow-upper {
+                                    margin-bottom: 0;
+                                    /* Center the upper box relative to the step */
+                                    display: flex;
+                                    flex-direction: column;
+                                    align-items: center;
+                                    justify-content: center;
+                                    width: 100%;
+                                }
+
+
+                                .workflow-arrow-down {
+                                    position: relative;
+                                    width: 2px;
+                                    height: 30px;
+                                    /* Reduced from 60px to match main arrow */
+                                    background: var(--text-muted);
+                                    margin: 10px auto;
+                                    /* Match gap of main line */
+                                }
+
+                                .workflow-arrow-down::after {
+                                    content: "";
+                                    position: absolute;
+                                    bottom: 0;
+                                    left: 50%;
+                                    transform: translateX(-50%);
+                                    width: 0;
+                                    height: 0;
+                                    border-left: 6px solid transparent;
+                                    border-right: 6px solid transparent;
+                                    border-top: 8px solid var(--text-muted);
+                                }
+
+                                .workflow-main-row {
+                                    display: flex;
+                                    align-items: center;
+                                    gap: 10px;
+                                }
+
+                                .workflow-box {
+                                    background: var(--bg-tertiary);
+                                    border: 1px solid var(--text-muted);
+                                    color: var(--text-primary);
+                                    padding: 10px 15px;
+                                    border-radius: 8px;
+                                    font-size: 0.85rem;
+                                    text-align: center;
+                                    min-width: 100px;
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: center;
+                                    height: 50px;
+                                    transition: all 0.3s ease;
+                                    position: relative;
+                                    box-sizing: border-box;
+                                }
+
+                                .workflow-box--upper {
+                                    /* Inherit default colors */
+                                    font-size: 0.8rem;
+                                    height: 40px;
+                                    min-width: 100px;
+                                }
+
+                                .workflow-box:hover {
+                                    border-color: var(--accent-cyan);
+                                    box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
+                                    transform: translateY(-3px);
+                                }
+
+                                .workflow-arrow {
+                                    display: block;
+                                    width: auto;
+                                    height: auto;
+                                    border: none;
+                                    color: var(--text-muted);
+                                    font-size: 1.5rem;
+                                    font-family: var(--font-display), monospace;
+                                    flex-shrink: 0;
+                                    line-height: 1;
+                                }
+
+                                .workflow-arrow::before {
+                                    content: "→";
+                                }
+
+                                /* Hide arrow for the LAST main row item only */
+                                /* Since the arrow is inside workflow-main-row inside workflow-step, we target the step */
+                                .workflow-step:last-child .workflow-main-row .workflow-arrow {
+                                    display: none;
+                                }
+
+                                @media (max-width: 768px) {
+                                    .workflow-container {
+                                        padding-bottom: 20px;
+                                    }
+                                }
+                            </style>
+                        </div>
+
+                        <div id="settings" style="margin-bottom: 80px; scroll-margin-top: 100px;">
+                            <h3
+                                style="font-family: var(--font-display); font-size: 1.4rem; color: var(--text-primary); margin-bottom: 30px; border-left: 4px solid var(--accent-cyan); padding-left: 15px;">
+                                SETTINGS <span
+                                    style="font-size: 0.9rem; color: var(--text-muted); margin-left: 10px;">設定</span>
+                            </h3>
+
+                            <div class="settings-grid" style="display: grid; grid-template-columns: 1fr; gap: 30px;">
+
+                                <!-- Concept & Theme -->
+                                <div style="background: var(--bg-tertiary); padding: 30px; border-radius: 8px;">
+                                    <h4
+                                        style="color: var(--accent-cyan); margin-bottom: 15px; font-size: 1.1rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px;">
+                                        コンセプト・テーマ</h4>
+                                    <dl
+                                        style="display: grid; grid-template-columns: 120px 1fr; gap: 10px 20px; margin: 0;">
+                                        <dt style="color: var(--text-muted); font-weight: bold;">エフェクト内容</dt>
+                                        <dd style="margin: 0;">チャージ → ビーム → 白黒フラッシュ → 大爆発</dd>
+
+                                        <dt style="color: var(--text-muted); font-weight: bold;">属性</dt>
+                                        <dd style="margin: 0;">草</dd>
+
+                                        <dt style="color: var(--text-muted); font-weight: bold;">雰囲気</dt>
+                                        <dd style="margin: 0;">幸せを感じる、強い愛の感情、全力でぶつける</dd>
+
+                                        <dt style="color: var(--text-muted); font-weight: bold;">感覚</dt>
+                                        <dd style="margin: 0;">爽快さと勢いのある重さ</dd>
+
+                                        <dt style="color: var(--text-muted); font-weight: bold;">スタイル</dt>
+                                        <dd style="margin: 0;">セミリアル、スタレのキュレネ、まどドラ</dd>
+                                    </dl>
+                                </div>
+
+                                <!-- Elements -->
+                                <div style="background: var(--bg-tertiary); padding: 30px; border-radius: 8px;">
+                                    <h4
+                                        style="color: var(--accent-cyan); margin-bottom: 15px; font-size: 1.1rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px;">
+                                        構成要素（幸せ要素）</h4>
+                                    <ul
+                                        style="list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 10px;">
+                                        <li
+                                            style="background: rgba(247, 79, 245, 0.1); padding: 5px 15px; border-radius: 20px; border: 1px solid #F74FF5; color: #F74FF5;">
+                                            ハート</li>
+                                        <li
+                                            style="background: rgba(136, 247, 79, 0.1); padding: 5px 15px; border-radius: 20px; border: 1px solid #88F74F; color: #88F74F;">
+                                            四つ葉</li>
+                                        <li
+                                            style="background: rgba(247, 212, 79, 0.1); padding: 5px 15px; border-radius: 20px; border: 1px solid #F7D44F; color: #F7D44F;">
+                                            黄色</li>
+                                        <li
+                                            style="background: rgba(250, 150, 235, 0.1); padding: 5px 15px; border-radius: 20px; border: 1px solid #FA96EB; color: #FA96EB;">
+                                            ピンク</li>
+                                    </ul>
+                                    <ul
+                                        style="margin-top: 15px; padding-left: 20px; color: var(--text-secondary); line-height: 1.6;">
+                                        <li>ハートのクリスタル</li>
+                                        <li>ビームの発射口周辺のオーラをハート型に</li>
+                                        <li>ビームのコアに心臓のような動き</li>
+                                        <li>白黒でディストーション（歪んだ愛を表現）</li>
+                                        <li>ハート型の爆発の煙</li>
+                                    </ul>
+                                </div>
+
+                                <!-- Features -->
+                                <div style="background: var(--bg-tertiary); padding: 30px; border-radius: 8px;">
+                                    <h4
+                                        style="color: var(--accent-cyan); margin-bottom: 15px; font-size: 1.1rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px;">
+                                        特徴</h4>
+                                    <p style="color: var(--text-secondary); line-height: 1.6;">
+                                        必殺技級の大規模エフェクト。でかい爆発。<br>
+                                        爆発の瞬間に白黒演出を入れる。<br>
+                                        大きい光が回転。<br>
+                                        ビーム・チャージの段階強化。<br>
+                                        ハートのクリスタルが最後粉々になりキラキラ舞い落ちる。
+                                    </p>
+                                </div>
+
+                                <!-- Color Palette -->
+                                <div style="background: var(--bg-tertiary); padding: 30px; border-radius: 8px;">
+                                    <h4
+                                        style="color: var(--accent-cyan); margin-bottom: 15px; font-size: 1.1rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px;">
+                                        カラーパレット</h4>
+                                    <div style="display: flex; flex-wrap: wrap; gap: 15px;">
+                                        <!-- Main -->
+                                        <div style="text-align: center;">
+                                            <div
+                                                style="width: 60px; height: 60px; background: #F74FF5; border-radius: 50%; border: 2px solid white; margin-bottom: 5px; box-shadow: 0 0 10px rgba(247, 79, 245, 0.5);">
+                                            </div>
+                                            <span
+                                                style="font-size: 0.75rem; color: var(--text-muted);">Main<br>#F74FF5</span>
+                                        </div>
+                                        <!-- Dark -->
+                                        <div style="text-align: center;">
+                                            <div
+                                                style="width: 60px; height: 60px; background: #672166; border-radius: 50%; border: 2px solid rgba(255,255,255,0.2); margin-bottom: 5px;">
+                                            </div>
+                                            <span
+                                                style="font-size: 0.75rem; color: var(--text-muted);">Dark<br>#672166</span>
+                                        </div>
+                                        <!-- Highlight -->
+                                        <div style="text-align: center;">
+                                            <div
+                                                style="width: 60px; height: 60px; background: #FFD1E8; border-radius: 50%; border: 2px solid white; margin-bottom: 5px;">
+                                            </div>
+                                            <span
+                                                style="font-size: 0.75rem; color: var(--text-muted);">Highlight<br>#FFD1E8</span>
+                                        </div>
+                                        <!-- Middle -->
+                                        <div style="text-align: center;">
+                                            <div
+                                                style="width: 60px; height: 60px; background: #FA96EB; border-radius: 50%; border: 2px solid white; margin-bottom: 5px;">
+                                            </div>
+                                            <span
+                                                style="font-size: 0.75rem; color: var(--text-muted);">Middle<br>#FA96EB</span>
+                                        </div>
+                                        <!-- Accent Yellow -->
+                                        <div style="text-align: center;">
+                                            <div
+                                                style="width: 60px; height: 60px; background: linear-gradient(135deg, #F7D44F 50%, #ECE1AF 50%); border-radius: 50%; border: 2px solid white; margin-bottom: 5px;">
+                                            </div>
+                                            <span
+                                                style="font-size: 0.75rem; color: var(--text-muted);">Yellow<br>Accent</span>
+                                        </div>
+                                        <!-- Accent Blue -->
+                                        <div style="text-align: center;">
+                                            <div
+                                                style="width: 60px; height: 60px; background: #70D9FF; border-radius: 50%; border: 2px solid white; margin-bottom: 5px;">
+                                            </div>
+                                            <span
+                                                style="font-size: 0.75rem; color: var(--text-muted);">Blue<br>Accent</span>
+                                        </div>
+                                        <!-- Accent Green -->
+                                        <div style="text-align: center;">
+                                            <div
+                                                style="width: 60px; height: 60px; background: linear-gradient(135deg, #88F74F 33%, #7DA26A 33%, #7DA26A 66%, #CCF74F 66%); border-radius: 50%; border: 2px solid white; margin-bottom: 5px;">
+                                            </div>
+                                            <span
+                                                style="font-size: 0.75rem; color: var(--text-muted);">Green<br>Accent</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Structure (Ki-Sho-Ten-Ketsu) -->
+                                <div style="background: var(--bg-tertiary); padding: 30px; border-radius: 8px;">
+                                    <h4
+                                        style="color: var(--accent-cyan); margin-bottom: 20px; font-size: 1.1rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px;">
+                                        構成案（起承転結）</h4>
+
+                                    <!-- Ki -->
+                                    <div style="margin-bottom: 30px;">
+                                        <h5
+                                            style="color: var(--text-primary); font-size: 1rem; margin-bottom: 10px; border-left: 3px solid var(--accent-cyan); padding-left: 10px;">
+                                            起 (Introduction) <span
+                                                style="font-size: 0.8rem; color: var(--text-muted); font-weight: normal; margin-left: 10px;">Max
+                                                2秒</span>
+                                        </h5>
+                                        <ul
+                                            style="color: var(--text-secondary); line-height: 1.6; margin-bottom: 15px; padding-left: 20px;">
+                                            <li>中心に向かってエネルギーを集める</li>
+                                            <li>コア部分にハートがスケール0から大きくなっていく</li>
+                                            <li>コアを覆う球が出現。最初輪郭はなくオーラがだんだん形になって球になる</li>
+                                            <li>球は草属性を感じられるような模様、ラインを走らせる</li>
+                                            <li>球の周りもラインを走らせる</li>
+                                            <li>コアのハートが出てき始めるタイミングで下側から2点がハートのリングを作っていく</li>
+                                            <li>中心のコアはビーム発射直前に一瞬小さくなる</li>
+                                        </ul>
+                                        <div style="display: flex; gap: 15px; flex-wrap: nowrap; overflow-x: auto;">
+                                            <img src="images/structure_1.jpg"
+                                                style="max-width: 48%; height: auto; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1); flex-shrink: 0;">
+                                            <img src="images/structure_2.jpg"
+                                                style="max-width: 48%; height: auto; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1); flex-shrink: 0;">
+                                        </div>
+                                    </div>
+
+                                    <!-- Sho -->
+                                    <div style="margin-bottom: 30px;">
+                                        <h5
+                                            style="color: var(--text-primary); font-size: 1rem; margin-bottom: 10px; border-left: 3px solid var(--accent-cyan); padding-left: 10px;">
+                                            承 (Development)
+                                        </h5>
+                                        <ul style="color: var(--text-secondary); line-height: 1.6; padding-left: 20px;">
+                                            <li>後方に風</li>
+                                            <li>一直線に光線を発射。発射する瞬間に強い光（溜が終わったことを示す）</li>
+                                            <li>発射口にはハート型のリング</li>
+                                            <li>太いビーム（発射口の先端は太く、少し透明にしてなじませる）</li>
+                                            <li>コアのハートを小刻みに拡縮。それに合わせてビームも小さく揺らす</li>
+                                            <li>ビーム構成：中心に強い1本、太いメイン色1本、暗めの1本、オーラ入り1本、ねじった1本</li>
+                                            <li>発射口から余分なエネルギーとして粒子を溢れさせて飛ばす</li>
+                                            <li>地面に光の反射を入れる（地面は削らない）</li>
+                                            <li>人が足元にオーラ</li>
+                                        </ul>
+                                        <div style="display: flex; gap: 15px; flex-wrap: nowrap; overflow-x: auto;">
+                                            <img src="images/structure_3.jpg"
+                                                style="max-width: 45%; height: auto; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1); flex-shrink: 0;">
+                                            <img src="images/structure_4.jpg"
+                                                style="max-width: 45%; height: auto; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1); flex-shrink: 0;">
+                                            <img src="images/structure_5.jpg"
+                                                style="max-width: 45%; height: auto; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1); flex-shrink: 0;">
+                                        </div>
+                                    </div>
+
+                                    <!-- Ten -->
+                                    <div style="margin-bottom: 30px;">
+                                        <h5
+                                            style="color: var(--text-primary); font-size: 1rem; margin-bottom: 10px; border-left: 3px solid var(--accent-cyan); padding-left: 10px;">
+                                            転 (Twist/Climax)
+                                        </h5>
+                                        <ul style="color: var(--text-secondary); line-height: 1.6; padding-left: 20px;">
+                                            <li>画角を変える</li>
+                                            <li>キャラの後方で爆発（キャラはカメラ目線）</li>
+                                            <li>当たった場所から飛び散る粒子、ハートを4つ出してクローバー型に（威力演出）</li>
+                                            <li>画面の1/3くらいのビーム</li>
+                                            <li>爆発直前：ハート→十字フラッシュ（白黒演出）→光の線</li>
+                                            <li>巨大な半球の爆発。模様は上にスクロール</li>
+                                            <li>地面に沿うように煙が広がる。2秒ほどかけて画面全体を白く覆う</li>
+                                            <li>カメラ揺れ</li>
+                                            <li>煙→発光→爆発（たくさんの火花、粒子、ハートが吹雪のように飛ぶ）</li>
+                                            <li>爆発の周りは円のリング。全体にミストのような煙</li>
+                                            <li>爆発が瞬時に大きくなった後徐々に広がる → ホワイトアウト</li>
+                                        </ul>
+                                        <div style="display: flex; gap: 15px; flex-wrap: nowrap; overflow-x: auto;">
+                                            <img src="images/structure_ten_1.jpg"
+                                                style="max-width: 30%; height: auto; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1); flex-shrink: 0;">
+                                            <img src="images/structure_ten_2.jpg"
+                                                style="max-width: 30%; height: auto; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1); flex-shrink: 0;">
+                                            <img src="images/structure_ten_3.jpg"
+                                                style="max-width: 30%; height: auto; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1); flex-shrink: 0;">
+                                            <img src="images/structure_ten_4.jpg"
+                                                style="max-width: 30%; height: auto; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1); flex-shrink: 0;">
+                                            <img src="images/structure_ten_5.jpg"
+                                                style="max-width: 30%; height: auto; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1); flex-shrink: 0;">
+                                        </div>
+                                    </div>
+
+                                    <!-- Ketsu -->
+                                    <div>
+                                        <h5
+                                            style="color: var(--text-primary); font-size: 1rem; margin-bottom: 10px; border-left: 3px solid var(--accent-cyan); padding-left: 10px;">
+                                            結 (Conclusion)
+                                        </h5>
+                                        <ul style="color: var(--text-secondary); line-height: 1.6; padding-left: 20px;">
+                                            <li>無数のキラキラが漂い、徐々に消えていく（六角形&ひし形）</li>
+                                            <li>地面付近の煙が上昇しハートの形ができる</li>
+                                            <li>全体に漂っていたミストは左右にはける（ゆっくり）</li>
+                                            <li>地面は削り焦げた跡</li>
+                                        </ul>
+                                        <div style="display: flex; gap: 15px; flex-wrap: nowrap; overflow-x: auto;">
+                                            <img src="images/structure_ketsu_1.jpg"
+                                                style="max-width: 48%; height: auto; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1); flex-shrink: 0;">
+                                            <img src="images/structure_ketsu_2.jpg"
+                                                style="max-width: 48%; height: auto; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1); flex-shrink: 0;">
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
 
-                        <div style="margin-top: 30px;">
-                            <strong
-                                style="color: var(--text-primary); display: block; margin-bottom: 15px;">地面のテクスチャ作成</strong>
+                        <div id="reference" style="margin-bottom: 80px; scroll-margin-top: 100px;">
+                            <h3
+                                style="font-family: var(--font-display); font-size: 1.4rem; color: var(--text-primary); margin-bottom: 20px; border-left: 4px solid var(--accent-cyan); padding-left: 15px;">
+                                REFERENCE <span
+                                    style="font-size: 0.9rem; color: var(--text-muted); margin-left: 10px;">リファレンス</span>
+                            </h3>
+                            <div
+                                style="background: var(--bg-tertiary); padding: 20px; border-radius: 8px; text-align: center;">
+                                <img src="images/ref_sheet.png" alt="Reference Sheet"
+                                    style="max-width: 100%; height: auto; border-radius: 4px;">
+                                <p style="color: var(--text-muted); font-size: 0.8rem; margin-top: 10px;">収集したリファレンス画像
+                                </p>
+                            </div>
+                        </div>
 
-                            <!-- Main Graph Image -->
-                            <div style="margin-bottom: 15px;">
-                                <img src="images/tips_ground_1.png"
+                        <div id="storyboard" style="margin-bottom: 80px; scroll-margin-top: 100px;">
+                            <h3
+                                style="font-family: var(--font-display); font-size: 1.4rem; color: var(--text-primary); margin-bottom: 20px; border-left: 4px solid var(--accent-cyan); padding-left: 15px;">
+                                STORYBOARD <span
+                                    style="font-size: 0.9rem; color: var(--text-muted); margin-left: 10px;">絵コンテ</span>
+                            </h3>
+                            <div
+                                style="background: var(--bg-tertiary); padding: 20px; border-radius: 8px; text-align: center;">
+                                <img src="images/storyboard.png" alt="Storyboard"
+                                    style="max-width: 100%; height: auto; border-radius: 4px;">
+                                <p style="color: var(--text-muted); font-size: 0.8rem; margin-top: 10px;">制作した絵コンテ</p>
+                            </div>
+                        </div>
+
+                        <div id="rough-design" style="margin-bottom: 80px; scroll-margin-top: 100px;">
+                            <h3
+                                style="font-family: var(--font-display); font-size: 1.4rem; color: var(--text-primary); margin-bottom: 20px; border-left: 4px solid var(--accent-cyan); padding-left: 15px;">
+                                ROUGH DESIGN <span
+                                    style="font-size: 0.9rem; color: var(--text-muted); margin-left: 10px;">ラフデザイン</span>
+                            </h3>
+                            <div style="background: var(--bg-tertiary); padding: 30px; border-radius: 8px;">
+                                <p style="color: var(--text-secondary); margin-bottom: 20px; line-height: 1.6;">
+                                    エフェクト制作を進める中でどんな要素を新たに追加するかを考えるとき、まずはスクリーンショットを撮りその画像の上からPhotoshopなどで簡単にデザインを行っています。
+                                </p>
+                                <div style="display: flex; flex-wrap: wrap; gap: 15px;">
+                                    <img src="images/rough_design_1.png"
+                                        style="width: calc(50% - 8px); height: auto; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1);">
+                                    <img src="images/rough_design_inserted.png"
+                                        style="width: calc(50% - 8px); height: auto; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1);">
+                                    <img src="images/rough_design_row2_col1.jpg"
+                                        style="width: calc(50% - 8px); height: auto; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1);">
+                                    <img src="images/rough_design_row2_col2.jpg"
+                                        style="width: calc(50% - 8px); height: auto; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1);">
+                                    <img src="images/rough_design_row3_col1.jpg"
+                                        style="width: calc(50% - 8px); height: auto; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1);">
+                                    <img src="images/rough_design_6.png"
+                                        style="width: calc(50% - 8px); height: auto; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1);">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="mesh" style="margin-bottom: 80px; scroll-margin-top: 100px;">
+                            <h2
+                                style="font-family: var(--font-display); font-size: 1.5rem; color: var(--accent-cyan); margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
+                                <span style="width: 20px; height: 2px; background: var(--accent-cyan);"></span>
+                                MESH
+                            </h2>
+                            <div
+                                style="background: rgba(255, 255, 255, 0.03); padding: 20px; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.05);">
+                                <p style="margin-bottom: 20px;">
+                                    <span style="
+                                display: inline-flex;
+                                align-items: center;
+                                gap: 10px;
+                                padding: 8px 16px;
+                                background: linear-gradient(90deg, rgba(0, 240, 255, 0.1), transparent);
+                                border-left: 3px solid var(--accent-cyan);
+                                color: var(--accent-cyan);
+                                font-family: var(--font-display);
+                                font-weight: 700;
+                                letter-spacing: 0.1em;
+                            ">
+                                        <span style="font-size: 0.9em; opacity: 0.8;">使用ツール</span>
+                                        <span
+                                            style="font-size: 1.2em; text-shadow: 0 0 10px rgba(0, 240, 255, 0.5);">MAYA</span>
+                                    </span>
+                                </p>
+                                <img src="images/mesh_1.png"
                                     style="width: 100%; height: auto; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1);">
                             </div>
+                        </div>
 
-                            <!-- 4 Textures Side by Side -->
-                            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-                                <div style="flex: 1; min-width: 80px;">
-                                    <img src="images/tips_ground_2.png"
-                                        style="width: 100%; height: auto; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1);">
+                        <div id="texture" style="margin-bottom: 80px; scroll-margin-top: 100px;">
+                            <h2
+                                style="font-family: var(--font-display); font-size: 1.5rem; color: var(--accent-cyan); margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
+                                <span style="width: 20px; height: 2px; background: var(--accent-cyan);"></span>
+                                TEXTURE
+                            </h2>
+                            <div
+                                style="background: rgba(255, 255, 255, 0.03); padding: 20px; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.05);">
+                                <p style="margin-bottom: 20px;">
+                                    <span style="
+                                display: inline-flex;
+                                align-items: center;
+                                gap: 10px;
+                                padding: 8px 16px;
+                                background: linear-gradient(90deg, rgba(0, 240, 255, 0.1), transparent);
+                                border-left: 3px solid var(--accent-cyan);
+                                color: var(--accent-cyan);
+                                font-family: var(--font-display);
+                                font-weight: 700;
+                                letter-spacing: 0.1em;
+                            ">
+                                        <span style="font-size: 0.9em; opacity: 0.8;">使用ツール</span>
+                                        <span
+                                            style="font-size: 1.1em; text-shadow: 0 0 10px rgba(0, 240, 255, 0.5);">Photoshop,
+                                            AfterEffects, Substance 3D Designer, EmberGen</span>
+                                    </span>
+                                </p>
+                                <p style="color: var(--text-secondary); margin-bottom: 10px; line-height: 1.6;">
+                                    自作したテクスチャを下に載せています。
+                                </p>
+                                <p style="color: var(--text-secondary); margin-bottom: 10px; line-height: 1.6;">
+                                    ノイズテクスチャのシームレス化処理にPhotoshopの生成AIを使用しています。
+                                </p>
+                                <p style="color: var(--text-secondary); margin-bottom: 20px; line-height: 1.6;">
+                                    自作のテクスチャの他にNOVAシェーダーサンプルプロジェクトのテクスチャも使用しています。
+                                </p>
+                                <img src="images/texture_1.png"
+                                    style="width: 100%; height: auto; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1);">
+                            </div>
+                        </div>
+
+                        <div id="points" style="margin-bottom: 80px; scroll-margin-top: 100px;">
+                            <h2
+                                style="font-family: var(--font-display); font-size: 1.5rem; color: var(--accent-cyan); margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
+                                <span style="width: 20px; height: 2px; background: var(--accent-cyan);"></span>
+                                POINTS
+                                <span
+                                    style="font-size: 0.8rem; color: var(--text-secondary); font-weight: normal; margin-left: 10px;">こだわり・工夫点</span>
+                            </h2>
+                            <div
+                                style="background: rgba(255, 255, 255, 0.03); padding: 20px; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.05);">
+                                <h3
+                                    style="font-family: var(--font-display); font-size: 1.3rem; color: var(--text-primary); margin-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px;">
+                                    ハートのリング
+                                </h3>
+
+                                <div style="margin-bottom: 20px;">
+                                    <strong
+                                        style="color: var(--accent-cyan); display: block; margin-bottom: 5px;">やりたかったこと：</strong>
+                                    <p style="color: var(--text-secondary); line-height: 1.6;">
+                                        徐々にハートが下から形どられるようにしたい
+                                    </p>
                                 </div>
-                                <div style="flex: 1; min-width: 80px;">
-                                    <img src="images/tips_ground_3.png"
-                                        style="width: 100%; height: auto; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1);">
+
+                                <p style="color: var(--text-secondary); margin-bottom: 20px; line-height: 1.6;">
+                                    初め、<strong>画像1</strong>のようなハートのメッシュにNOVAシェーダーのInverseをオンにすることで輪郭のみ表示させるようにして上下を白と黒で分けたテクスチャをスクロールさせたが、ハートの凹んでいる部分が最後に見えるようにならなかった。
+                                </p>
+
+                                <p style="color: var(--text-secondary); margin-bottom: 30px; line-height: 1.6;">
+                                    そのため<strong>画像2</strong>のリング状のハートを作ってUVスクロールさせることで下からハートが凹んだ部分に向かって現れる表現が可能となった。
+                                </p>
+
+                                <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                                    <div style="flex: 1; min-width: 300px; display: flex; flex-direction: column;">
+                                        <div
+                                            style="flex: 1; display: flex; align-items: center; justify-content: center; margin-bottom: 5px;">
+                                            <img src="images/tips_heart_mesh.png"
+                                                style="max-width: 100%; height: auto; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1);">
+                                        </div>
+                                        <p
+                                            style="color: var(--text-muted); font-size: 0.8rem; text-align: center; margin-top: auto;">
+                                            画像1</p>
+                                    </div>
+                                    <div style="flex: 1; min-width: 300px; display: flex; flex-direction: column;">
+                                        <div
+                                            style="flex: 1; display: flex; align-items: center; justify-content: center; margin-bottom: 5px;">
+                                            <img src="images/tips_heart_ring.png"
+                                                style="max-width: 100%; height: auto; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1);">
+                                        </div>
+                                        <p
+                                            style="color: var(--text-muted); font-size: 0.8rem; text-align: center; margin-top: auto;">
+                                            画像2</p>
+                                    </div>
                                 </div>
-                                <div style="flex: 1; min-width: 80px;">
-                                    <img src="images/tips_ground_4.jpg"
-                                        style="width: 100%; height: auto; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1);">
+
+                                <!-- Divider -->
+                                <div style="height: 1px; background: rgba(255,255,255,0.1); margin: 40px 0;"></div>
+
+                                <h3
+                                    style="font-family: var(--font-display); font-size: 1.3rem; color: var(--text-primary); margin-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px;">
+                                    ビーム直撃時に出現する四つ葉を模したエフェクト
+                                </h3>
+
+                                <div style="margin-bottom: 20px;">
+                                    <strong
+                                        style="color: var(--accent-cyan); display: block; margin-bottom: 5px;">工夫したこと：</strong>
+                                    <p style="color: var(--text-secondary); line-height: 1.6;">
+                                        同じ画を続けない
+                                    </p>
                                 </div>
-                                <div style="flex: 1; min-width: 80px;">
-                                    <img src="images/tips_ground_5.png"
-                                        style="width: 100%; height: auto; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1);">
+
+                                <p style="color: var(--text-secondary); margin-bottom: 20px; line-height: 1.6;">
+                                    ビームを発射しロボットのキャラクターにビームが直撃しているカットに切り替わるが、当初はこのカットの前半約1.5秒はビームが直撃している様子の同じ画が続いていた。しかし、この短い間でも同じ画が続くと見ている人に飽きを感じさせてしまうと思い、ビームの先端に現れるハートを4つ並べ四葉を模したピンク色のエフェクトを徐々に大きくすることで、エネルギーの集約を表現しつつ、同じ画を作らず飽きが来ない体験設計をする工夫を行った。
+                                </p>
+
+                                <div style="display: flex; gap: 15px; flex-wrap: wrap; margin-bottom: 40px;">
+                                    <div style="flex: 1; min-width: 300px;">
+                                        <img src="images/tips_clover_1.png"
+                                            style="width: 100%; height: auto; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1);">
+                                    </div>
+                                    <div style="flex: 1; min-width: 300px;">
+                                        <img src="images/tips_clover_2.png"
+                                            style="width: 100%; height: auto; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1);">
+                                    </div>
+                                </div>
+
+                                <!-- Divider -->
+                                <div style="height: 1px; background: rgba(255,255,255,0.1); margin: 40px 0;"></div>
+
+                                <h3
+                                    style="font-family: var(--font-display); font-size: 1.3rem; color: var(--text-primary); margin-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px;">
+                                    大きなヒットエフェクト
+                                </h3>
+
+                                <div style="margin-bottom: 20px;">
+                                    <strong
+                                        style="color: var(--accent-cyan); display: block; margin-bottom: 5px;">工夫したこと：</strong>
+                                    <p style="color: var(--text-secondary); line-height: 1.6;">
+                                        メッシュ感をなくす
+                                    </p>
+                                </div>
+
+                                <p style="color: var(--text-secondary); margin-bottom: 20px; line-height: 1.6;">
+                                    ビームが持続的に敵に当たるためヒット部分にヒットの連続を表現したエフェクトを制作した。
+                                </p>
+
+                                <p style="color: var(--text-secondary); line-height: 1.6;">
+                                    Render Modeをメッシュに設定しパーティクルを1つだけ出してUVスクロールさせるのではなくRate over
+                                    Timeで複数パーティクルを放出し、寿命を短く、Size over
+                                    lifetimeで小⇒大になるようにグラフを作り高速でパーティクルを出現させることでメッシュ感を無くすことに成功。
+                                </p>
+                                <div
+                                    style="margin-top: 30px; display: flex; gap: 15px; flex-wrap: wrap; align-items: start;">
+                                    <div style="flex: 1; min-width: 300px;">
+                                        <img src="images/tips_big_hit.png"
+                                            style="width: 100%; height: auto; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1);">
+                                    </div>
+                                    <div
+                                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; gap: 15px;">
+                                        <img src="images/tips_big_hit_sub1.png"
+                                            style="width: 100%; height: auto; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1);">
+                                        <img src="images/tips_big_hit_sub2.png"
+                                            style="width: 100%; height: auto; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1);">
+                                    </div>
+                                </div>
+
+                                <!-- Divider -->
+                                <div style="height: 1px; background: rgba(255,255,255,0.1); margin: 40px 0;"></div>
+
+                                <h3
+                                    style="font-family: var(--font-display); font-size: 1.3rem; color: var(--text-primary); margin-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px;">
+                                    一瞬の白黒表現
+                                </h3>
+
+                                <div style="margin-bottom: 20px;">
+                                    <strong
+                                        style="color: var(--accent-cyan); display: block; margin-bottom: 5px;">やりたかったこと：</strong>
+                                    <p style="color: var(--text-secondary); line-height: 1.6;">
+                                        爆発の勢いをより感じてもらう表現
+                                    </p>
+                                </div>
+
+                                <p style="color: var(--text-secondary); line-height: 1.6;">
+                                    自分もプレイしている『崩壊：スターレイル』によく見られる爆発寸前に入る白黒の描写を自身の作品にも取り入れた。爆発の勢いを引き立たせるため直前に一瞬入れることで見ている人にエネルギーの大きさを感じてもらう意図がある。
+                                </p>
+
+                                <div
+                                    style="margin-top: 30px; display: flex; gap: 15px; flex-wrap: wrap; align-items: start;">
+                                    <div style="flex: 1; min-width: 300px;">
+                                        <img src="images/tips_bw_3.png"
+                                            style="width: 100%; height: auto; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1); margin-bottom: 10px;">
+                                        <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6;">
+                                            Post-processingのChannel MixerとLift Gamma Gainを用いて白黒演出を行った。Lift Gamma
+                                            Gainは白と黒のコントラストを出しながら極端な白飛び、黒潰れが起きないように値を調整した。
+                                        </p>
+                                    </div>
+                                    <div
+                                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; gap: 15px;">
+                                        <img src="images/tips_bw_1.png"
+                                            style="width: 100%; height: auto; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1);">
+                                        <img src="images/tips_bw_2.png"
+                                            style="width: 100%; height: auto; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1);">
+                                    </div>
+                                </div>
+
+                                <!-- Separator -->
+                                <div
+                                    style="width: 100%; height: 1px; background: rgba(255,255,255,0.1); margin: 60px 0;">
+                                </div>
+
+                                <!-- Smoke & Ground Texture -->
+                                <h3
+                                    style="font-family: var(--font-display); font-size: 1.3rem; color: var(--text-primary); margin-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px;">
+                                    煙・地面の質感表現
+                                </h3>
+
+                                <div style="margin-bottom: 20px;">
+                                    <strong
+                                        style="color: var(--accent-cyan); display: block; margin-bottom: 5px;">やりたかったこと：</strong>
+                                    <p style="color: var(--text-secondary); line-height: 1.6;">
+                                        煙や地面の割れといった自然物、物理的な要素はリアルなものに近づけること
+                                    </p>
+                                </div>
+
+                                <p style="color: var(--text-secondary); line-height: 1.6; margin-bottom: 20px;">
+                                    手描きのテクスチャでは自分が表現したい質感を作ることが難しいと判断しこれまで触れていなかったツールにも積極的にアプローチし表現を追求した。<br>
+                                    煙はEmberGenでシミュレーションしたものを連番の画像で書き出し、一枚のテクスチャシートにして使用。<br>
+                                    地面の割れはSubstance 3D Designerを使用し、プロシージャルなテクスチャ作成を行った。
+                                </p>
+
+                                <div style="margin-top: 30px;">
+                                    <strong
+                                        style="color: var(--text-primary); display: block; margin-bottom: 15px;">煙のテクスチャ作成</strong>
+                                    <div style="display: flex; gap: 15px; flex-wrap: wrap; align-items: start;">
+                                        <div style="flex: 1.777; min-width: 300px;">
+                                            <img src="images/tips_smoke_1.png"
+                                                style="width: 100%; height: auto; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1);">
+                                        </div>
+                                        <div style="flex: 1; min-width: 168px;">
+                                            <img src="images/tips_smoke_2.png"
+                                                style="width: 100%; height: auto; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1);">
+                                        </div>
+                                    </div>
+
+                                    <!-- Sort Mode Explanation -->
+                                    <div
+                                        style="display: flex; gap: 20px; align-items: center; margin-top: 15px; flex-wrap: wrap;">
+                                        <div style="flex: 1; min-width: 300px;">
+                                            <img src="images/tips_smoke_setting.png"
+                                                style="width: 100%; height: auto; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1);">
+                                        </div>
+                                        <div style="flex: 1; min-width: 300px;">
+                                            <p style="color: var(--text-secondary); line-height: 1.6;">
+                                                Sort ModeをBy
+                                                Distanceにすることで手前側の煙の描画を優先しカメラから距離が離れた煙は手前の煙に隠れるようにして見た目の整合性を取る工夫も行っている。
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div style="margin-top: 30px;">
+                                    <strong
+                                        style="color: var(--text-primary); display: block; margin-bottom: 15px;">地面のテクスチャ作成</strong>
+
+                                    <!-- Main Graph Image -->
+                                    <div style="margin-bottom: 15px;">
+                                        <img src="images/tips_ground_1.png"
+                                            style="width: 100%; height: auto; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1);">
+                                    </div>
+
+                                    <!-- 4 Textures Side by Side -->
+                                    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                                        <div style="flex: 1; min-width: 80px;">
+                                            <img src="images/tips_ground_2.png"
+                                                style="width: 100%; height: auto; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1);">
+                                        </div>
+                                        <div style="flex: 1; min-width: 80px;">
+                                            <img src="images/tips_ground_3.png"
+                                                style="width: 100%; height: auto; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1);">
+                                        </div>
+                                        <div style="flex: 1; min-width: 80px;">
+                                            <img src="images/tips_ground_4.jpg"
+                                                style="width: 100%; height: auto; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1);">
+                                        </div>
+                                        <div style="flex: 1; min-width: 80px;">
+                                            <img src="images/tips_ground_5.png"
+                                                style="width: 100%; height: auto; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1);">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+
                     </div>
-                </div>
 
-            </div>
-
-            <div style="margin-top: 80px; text-align: center;">
-                <p
-                    style="color: var(--text-muted); margin-bottom: 30px; font-family: var(--font-display); font-size: 2rem; letter-spacing: 0.1em; font-weight: 700;">
-                    To be Add</p>
-                <a href="works_vfx.html" class="back-btn" style="
+                    <div style="margin-top: 80px; text-align: center;">
+                        <p
+                            style="color: var(--text-muted); margin-bottom: 30px; font-family: var(--font-display); font-size: 2rem; letter-spacing: 0.1em; font-weight: 700;">
+                            To be Add</p>
+                        <a href="works_vfx.html" class="back-btn" style="
                         display: inline-block;
                         padding: 12px 40px;
                         background: transparent;
@@ -2203,11 +2311,28 @@
                         text-transform: uppercase;
                         letter-spacing: 2px;
                         transition: all 0.3s ease;
-                    "
-                    onmouseover="this.style.background='rgba(0, 240, 255, 0.1)'; this.style.boxShadow='0 0 15px rgba(0, 240, 255, 0.3)';"
-                    onmouseout="this.style.background='transparent'; this.style.boxShadow='none';">
-                    BACK TO GAME EFFECTS LIST
-                </a>
+                    " onmouseover="this.style.background='rgba(0, 240, 255, 0.1)'; this.style.boxShadow='0 0 15px rgba(0, 240, 255, 0.3)';"
+                            onmouseout="this.style.background='transparent'; this.style.boxShadow='none';">
+                            BACK TO GAME EFFECTS LIST
+                        </a>
+                    </div>
+                </div>
+
+                <aside class="sidebar-toc">
+                    <h3 class="sidebar-toc__title">CONTENTS</h3>
+                    <ul class="sidebar-toc__list">
+                        <li class="sidebar-toc__item"><a href="#workflow" class="sidebar-toc__link">Workflow</a></li>
+                        <li class="sidebar-toc__item"><a href="#settings" class="sidebar-toc__link">Settings</a></li>
+                        <li class="sidebar-toc__item"><a href="#reference" class="sidebar-toc__link">Reference</a></li>
+                        <li class="sidebar-toc__item"><a href="#storyboard" class="sidebar-toc__link">Storyboard</a>
+                        </li>
+                        <li class="sidebar-toc__item"><a href="#rough-design" class="sidebar-toc__link">Rough Design</a>
+                        </li>
+                        <li class="sidebar-toc__item"><a href="#mesh" class="sidebar-toc__link">Mesh</a></li>
+                        <li class="sidebar-toc__item"><a href="#texture" class="sidebar-toc__link">Texture</a></li>
+                        <li class="sidebar-toc__item"><a href="#points" class="sidebar-toc__link">Points</a></li>
+                    </ul>
+                </aside>
             </div>
             </div>
         </section>
@@ -2270,6 +2395,42 @@
                             block: 'center'
                         });
                     }
+                }
+            });
+        });
+
+        // Sidebar TOC Active State
+        document.addEventListener('DOMContentLoaded', () => {
+            const navLinks = document.querySelectorAll('.sidebar-toc__link');
+
+            const observerOptions = {
+                root: null,
+                rootMargin: '-20% 0px -60% 0px', // Activate when section is in the upper part of the screen
+                threshold: 0
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.getAttribute('id');
+                        // Remove active class from all links
+                        navLinks.forEach(link => link.classList.remove('active'));
+
+                        // Add active class to corresponding link
+                        const activeLink = document.querySelector(`.sidebar-toc__link[href="#${id}"]`);
+                        if (activeLink) {
+                            activeLink.classList.add('active');
+                        }
+                    }
+                });
+            }, observerOptions);
+
+            // Track sections referenced in TOC
+            navLinks.forEach(link => {
+                const id = link.getAttribute('href').substring(1);
+                const section = document.getElementById(id);
+                if (section) {
+                    observer.observe(section);
                 }
             });
         });
